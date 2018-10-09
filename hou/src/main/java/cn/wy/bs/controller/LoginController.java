@@ -5,9 +5,7 @@ import cn.wy.bs.utils.ResponseData;
 
 
 import com.alibaba.fastjson.JSONObject;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -27,29 +25,28 @@ public class LoginController {
         return "aaa";
     }
 
-    @RequestMapping(value = "/login")
+    @RequestMapping(value = "/login" , method = RequestMethod.GET)
     public ResponseData login(
-            HttpServletRequest request
-//            @RequestBody HashMap<String,Object> map
+            HttpServletRequest request,
+            @RequestParam HashMap<String,Object> map
     ){
         ResponseData responseData=new ResponseData();
         JSONObject jsonObject = new JSONObject();
-        System.out.println("login");
-//        int count=userService.findByUserNameAndPassword(map);
-//        switch (count){
-//            case 0:
-//                responseData.setRspCode("100001");
-//                responseData.setRspMsg("账号或者密码错误！");
-//                break;
-//            case 1:
-//                HttpSession session =request.getSession();
-//                session.setAttribute("userName",map.get("username"));
-//                jsonObject.put("userName",session.getAttribute("userName"));
-//                responseData.setData(jsonObject);
-//                responseData.setRspCode("000000");
-//                responseData.setRspMsg("登录成功");
-//                break;
-//        }
+        int count=userService.findByUserNameAndPassword(map);
+        switch (count){
+            case 0:
+                responseData.setRspCode("100001");
+                responseData.setRspMsg("账号或者密码错误！");
+                break;
+            case 1:
+                HttpSession session =request.getSession();
+                session.setAttribute("userName",map.get("username"));
+                jsonObject.put("userName",session.getAttribute("userName"));
+                responseData.setData(jsonObject);
+                responseData.setRspCode("000000");
+                responseData.setRspMsg("登录成功");
+                break;
+        }
         return responseData;
     }
 }
