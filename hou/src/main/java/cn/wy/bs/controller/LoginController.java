@@ -40,7 +40,7 @@ public class LoginController {
                 break;
             case 1:
                 HttpSession session =request.getSession();
-                session.setAttribute("userName",map.get("username"));
+                session.setAttribute("userName",map.get("userName"));
                 jsonObject.put("userName",session.getAttribute("userName"));
                 responseData.setData(jsonObject);
                 responseData.setRspCode("000000");
