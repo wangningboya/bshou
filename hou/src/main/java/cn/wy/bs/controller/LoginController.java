@@ -49,4 +49,16 @@ public class LoginController {
         }
         return responseData;
     }
+
+    @RequestMapping(value = "/logout" , method = RequestMethod.GET)
+    public ResponseData logout(
+            HttpServletRequest request
+    ){
+        ResponseData responseData=new ResponseData();
+        HttpSession session =request.getSession();
+        session.removeAttribute("userName");
+        responseData.setRspCode("000000");
+        responseData.setRspMsg("登出成功");
+        return responseData;
+    }
 }
