@@ -1,5 +1,6 @@
 package cn.wy.bs.service.impl;
 
+import cn.wy.bs.entity.User;
 import cn.wy.bs.mapper.UserMapper;
 import cn.wy.bs.service.UserService;
 import org.springframework.stereotype.Service;
@@ -16,5 +17,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public int findByUserNameAndPassword(HashMap<String,Object> map) {
         return userMapper.findByUserNameAndPassword(map);
+    }
+
+    @Override
+    public User findByUserName(HashMap<String, Object> map) {
+        return userMapper.findByUserName(map);
     }
 }

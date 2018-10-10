@@ -6,4 +6,8 @@
     <select id="findByUserNameAndPassword" parameterType="string" resultType="int">
         SELECT count(*) FROM t_user WHERE userName=#{userName} AND password=#{password}
     </select>
+
+    <select id="findByUserName" parameterType="string" resultType="cn.wy.bs.entity.User">
+        SELECT * FROM t_user WHERE userName=#{userName}
+    </select>
 </mapper>
