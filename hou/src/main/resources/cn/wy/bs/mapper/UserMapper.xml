@@ -10,4 +10,13 @@
     <select id="findByUserName" parameterType="string" resultType="cn.wy.bs.entity.User">
         SELECT * FROM t_user WHERE userName=#{userName}
     </select>
+
+    <select id="findAuthByRoleId" parameterType="string" resultType="cn.wy.bs.entity.Auth">
+        SELECT *
+        FROM t_auth a,t_authrole ar,t_role r
+        WHERE a.ID=ar.AUTHID AND ar.ROLEID=r.ID
+        AND a.VISIABLE=0 AND a.ISDELETE=0 AND ar.ISDELETE=0 AND r.ISDELETE=0
+        AND r.ID=#{roleId}
+        ORDER BY a.RANK
+    </select>
 </mapper>

@@ -1,5 +1,7 @@
 package cn.wy.bs.entity;
 
+import cn.wy.bs.utils.Base;
+
 /**
  * 
  * 
@@ -7,7 +9,7 @@ package cn.wy.bs.entity;
  * 
  * @date 2018-09-28
  */
-public class Auth {
+public class Auth extends Base{
 
 
     /**

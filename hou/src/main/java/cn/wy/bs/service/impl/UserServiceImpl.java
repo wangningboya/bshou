@@ -1,5 +1,6 @@
 package cn.wy.bs.service.impl;
 
+import cn.wy.bs.entity.Auth;
 import cn.wy.bs.entity.User;
 import cn.wy.bs.mapper.UserMapper;
 import cn.wy.bs.service.UserService;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -22,5 +24,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByUserName(HashMap<String, Object> map) {
         return userMapper.findByUserName(map);
+    }
+
+    @Override
+    public List<Auth> findAuthByRoleId(String roleId) {
+        return userMapper.findAuthByRoleId(roleId);
     }
 }
