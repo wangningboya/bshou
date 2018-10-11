@@ -4,11 +4,17 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.wy.bs.mapper.UserMapper">
     <select id="findByUserNameAndPassword" parameterType="string" resultType="int">
-        SELECT count(*) FROM t_user WHERE userName=#{userName} AND password=#{password}
+        SELECT count(*)
+        FROM t_user
+        WHERE isdelete=0
+        AND userName=#{userName} AND password=#{password}
     </select>
 
     <select id="findByUserName" parameterType="string" resultType="cn.wy.bs.entity.User">
-        SELECT * FROM t_user WHERE userName=#{userName}
+        SELECT *
+        FROM t_user
+        WHERE isdelete=0
+        AND userName=#{userName}
     </select>
 
     <select id="findAuthByRoleId" parameterType="string" resultType="cn.wy.bs.entity.Auth">

@@ -3,7 +3,7 @@ package cn.wy.bs.entity;
 /**
  * 
  * 
- * @author wcyong
+ * @author wy
  * 
  * @date 2018-09-28
  */
@@ -84,4 +84,19 @@ public class Userinfo {
         this.depID = depID;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 }

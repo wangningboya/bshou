@@ -5,12 +5,14 @@ import cn.wy.bs.entity.User;
 import cn.wy.bs.mapper.UserMapper;
 import cn.wy.bs.service.UserService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
     @Resource

@@ -3,7 +3,7 @@ package cn.wy.bs.entity;
 /**
  * 
  * 
- * @author wcyong
+ * @author wy
  * 
  * @date 2018-09-28
  */
