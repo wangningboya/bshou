@@ -25,4 +25,11 @@
         AND r.ID=#{roleId}
         ORDER BY a.RANK
     </select>
+
+    <select id="getUserByRoleId" parameterType="string" resultType="cn.wy.bs.entity.User">
+        SELECT *
+        FROM t_user
+        WHERE ISDELETE=0
+        AND ROLEID=#{roleId}
+    </select>
 </mapper>

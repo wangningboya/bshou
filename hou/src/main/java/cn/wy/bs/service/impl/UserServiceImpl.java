@@ -32,4 +32,9 @@ public class UserServiceImpl implements UserService {
     public List<Auth> findAuthByRoleId(String roleId) {
         return userMapper.findAuthByRoleId(roleId);
     }
+
+    @Override
+    public List<User> getUserByRoleId(HashMap<String,Object> map) {
+        return userMapper.getUserByRoleId(map);
+    }
 }

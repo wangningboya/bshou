@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -38,6 +39,19 @@ public class UserController {
         List<Auth> authList=userService.findAuthByRoleId(user.getRoleID());
         jsonObject.put("user",user);
         jsonObject.put("authList",authList);
+        responseData.setData(jsonObject);
+        responseData.setRspCode("000000");
+        return responseData;
+    }
+
+    @RequestMapping(value = "/getUserByRoleId")
+    public ResponseData getUserByRoleId(
+            @RequestParam HashMap<String,Object> map
+    ){
+        ResponseData responseData=new ResponseData();
+        JSONObject jsonObject = new JSONObject();
+        List<User> userList=userService.getUserByRoleId(map);
+        jsonObject.put("userList",userList);
         responseData.setData(jsonObject);
         responseData.setRspCode("000000");
         return responseData;

@@ -16,4 +16,7 @@ public interface UserService {
 
     //根据角色ID获取菜单权限
     public List<Auth> findAuthByRoleId(String roleId);
+
+    //获取审核人员
+    public List<User> getUserByRoleId(HashMap<String,Object> map);
 }

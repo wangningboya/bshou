@@ -1,21 +1,11 @@
 package cn.wy.bs.dto;
 
-public class DemandDto {
+import cn.wy.bs.entity.Demand;
+import cn.wy.bs.utils.Base;
 
-    /**
-     * 需求编号
-     */
-    private String demandNO;
+import java.util.Date;
 
-    /**
-     * 需求名称
-     */
-    private String demandName;
-
-    /**
-     * 需求类型（0需求/1BUG）
-     */
-    private Integer demandType;
+public class DemandDto extends Demand{
 
     /**
      * 项目编号
@@ -27,8 +17,20 @@ public class DemandDto {
      */
     private String projectName;
 
-    /**
-     * 状态（0提出需求/1需求审核/2审核通过/3审核未通过/4预估时间/5开发开始/6开发暂停/7开发结束/8开发关闭/9需求验收）
-     */
-    private Integer state;
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+
+    public String getProjectNO() {
+        return projectNO;
+    }
+
+    public void setProjectNO(String projectNO) {
+        this.projectNO = projectNO;
+    }
+
 }

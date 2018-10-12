@@ -3,14 +3,49 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.wy.bs.mapper.DemandMapper">
-    <select id="findDemand" parameterType="string" resultType="cn.wy.bs.entity.Demand">
-        SELECT *
-        FROM t_demand
-        WHERE isdelete=0
+    <select id="findDemand" parameterType="string" resultType="cn.wy.bs.dto.DemandDto">
+        <!--SELECT *-->
+        <!--FROM t_demand-->
+        <!--WHERE isdelete=0-->
+        <!--<if test="userName!=null and userName!=''">-->
+            <!--AND devID=#{userName}-->
+        <!--</if>-->
+        SELECT d.*,p.PROJECTNAME,p.PROJECTNO
+        FROM t_demand d,t_project p
+        WHERE d.ISDELETE=0 AND p.ISDELETE=0
+        AND d.PROJECTID=p.ID
         <if test="userName!=null and userName!=''">
-            AND devID=#{userName}
+            AND d.CREATENAME=#{userName}
         </if>
-
     </select>
+
+    <insert id="add" parameterType="cn.wy.bs.entity.Demand">
+        INSERT INTO t_demand (
+        id,
+        CREATETIME,
+        CREATENAME,
+        ISDELETE,
+        DEMANDNO,
+        DEMANDNAME,
+        DEMANDDES,
+        DEMANDTYPE,
+        PROJECTID,
+        ACCID,
+        STATE
+        )
+        VALUES (
+        REPLACE(UUID(),'-',''),
+        #{createTime},
+        #{createName},
+        0,
+        #{demandNO},
+        #{demandName},
+        #{demandDes},
+        #{demandType},
+        #{projectID},
+        #{accID},
+        0
+        )
+    </insert>
 
 </mapper>

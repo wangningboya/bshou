@@ -13,4 +13,6 @@ public interface UserMapper {
     public User findByUserName(HashMap<String,Object> map);
 
     public List<Auth> findAuthByRoleId(String roleId);
+
+    public List<User> getUserByRoleId(HashMap<String,Object> map);
 }

@@ -1,5 +1,6 @@
 package cn.wy.bs.service.impl;
 
+import cn.wy.bs.dto.DemandDto;
 import cn.wy.bs.entity.Demand;
 import cn.wy.bs.mapper.DemandMapper;
 import cn.wy.bs.service.DemandService;
@@ -18,7 +19,12 @@ public class DemandServiceImpl implements DemandService{
     DemandMapper demandMapper;
 
     @Override
-    public List<Demand> findDemand(HashMap<String, Object> map) {
+    public List<DemandDto> findDemand(HashMap<String, Object> map) {
         return demandMapper.findDemand(map);
+    }
+
+    @Override
+    public void addDemand(Demand demand) {
+        demandMapper.add(demand);
     }
 }
