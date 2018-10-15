@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface DemandMapper {
 
-    public List<DemandDto> findDemand(HashMap<String,Object> map);
+    List<DemandDto> getDemand(HashMap<String, Object> map);
 
-    public void add(Demand demand);
+    void add(Demand demand);
 }

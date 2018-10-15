@@ -26,19 +26,20 @@ public class DemandController {
 
     @RequestMapping(value = "/findDemand" , method = RequestMethod.GET)
     public ResponseData findDemand(
-            @RequestParam HashMap<String,Object> map
+            @RequestParam HashMap<String, Object> map
     ){
-        ResponseData responseData=new ResponseData();
+        ResponseData responseData = new ResponseData();
         JSONObject jsonObject = new JSONObject();
         try{
-            List<DemandDto> demandList=demandService.findDemand(map);
-            jsonObject.put("demandList",demandList);
+            List<DemandDto> demandList = demandService.getDemand(map);
+            jsonObject.put("demandList", demandList);
             responseData.setData(jsonObject);
             responseData.setRspCode("000000");
         }catch (Exception e){
             ResponseData responseData1 = new ResponseData();
             responseData1.setRspCode("999999");
             responseData.setRspMsg("查询失败");
+            System.out.println(e);
             return responseData1;
         }
         return responseData;
@@ -47,20 +48,20 @@ public class DemandController {
     @RequestMapping(value = "/addDemand")
     public ResponseData addProject(
             HttpServletRequest request,
-            @RequestParam HashMap<String,Object> map
+            @RequestParam HashMap<String, Object> map
     ){
-        HttpSession session =request.getSession();
+        HttpSession session = request.getSession();
         ResponseData responseData = new ResponseData();
         Demand demand = new Demand();
         demand.setCreateTime(new Date());
         demand.setCreateName(session.getAttribute("userName").toString());
         demand.setDemandName(map.get("demandName").toString());
         demand.setDemandDes(map.get("demandDes").toString());
-        demand.setDemandNO(map.get("demandNO").toString());
+        demand.setDemandNo(map.get("demandNo").toString());
         demand.setDemandType(Integer.parseInt(map.get("demandType").toString()));
-        demand.setAccID(map.get("accID").toString());
-        demand.setProjectID(map.get("projectID").toString());
-        demandService.addDemand(demand);
+        demand.setAccId(map.get("accId").toString());
+        demand.setProjectId(map.get("projectId").toString());
+        demandService.saveDemand(demand);
         responseData.setRspCode("000000");
         return responseData;
     }

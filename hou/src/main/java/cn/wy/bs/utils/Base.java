@@ -80,4 +80,16 @@ public class Base {
     public void setIsDelete(Integer isDelete) {
         this.isDelete = isDelete;
     }
+
+    @Override
+    public String toString() {
+        return "Base{" +
+                "ID='" + ID + '\'' +
+                ", createTime=" + createTime +
+                ", createName='" + createName + '\'' +
+                ", modifiTime=" + modifiTime +
+                ", modifiName='" + modifiName + '\'' +
+                ", isDelete=" + isDelete +
+                '}';
+    }
 }

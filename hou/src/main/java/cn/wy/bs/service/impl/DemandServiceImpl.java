@@ -19,12 +19,12 @@ public class DemandServiceImpl implements DemandService{
     DemandMapper demandMapper;
 
     @Override
-    public List<DemandDto> findDemand(HashMap<String, Object> map) {
-        return demandMapper.findDemand(map);
+    public List<DemandDto> getDemand(HashMap<String, Object> map) {
+        return demandMapper.getDemand(map);
     }
 
     @Override
-    public void addDemand(Demand demand) {
+    public void saveDemand(Demand demand) {
         demandMapper.add(demand);
     }
 }

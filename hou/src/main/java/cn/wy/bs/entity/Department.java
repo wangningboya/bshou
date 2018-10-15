@@ -17,7 +17,7 @@ public class Department {
     /**
      * 父ID
      */
-    private String parentID;
+    private String parentId;
 
     public String getDepName() {
         return depName;
@@ -27,11 +27,20 @@ public class Department {
         this.depName = depName;
     }
 
-    public String getParentID() {
-        return parentID;
+    public String getParentId() {
+        return parentId;
     }
 
-    public void setParentID(String parentID) {
-        this.parentID = parentID;
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
+    }
+
+    @Override
+    public String toString() {
+        super.toString();
+        return "Department{" +
+                "depName='" + depName + '\'' +
+                ", parentId='" + parentId + '\'' +
+                '}';
     }
 }

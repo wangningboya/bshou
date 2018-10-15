@@ -21,7 +21,7 @@ public class Page<T> {
     // 查询条件
     private Map<String, Object> params;
 
-    //数据
+    // 数据
     private List<T> list=new ArrayList<T>();
 
 
@@ -50,7 +50,7 @@ public class Page<T> {
     }
 
     public int getTotalPage() {
-        double a=((double) totalRecord/pageSize);
+        double a = ((double) totalRecord/pageSize);
         return (int) Math.ceil(a);
     }
 

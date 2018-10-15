@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.wy.bs.mapper.DemandMapper">
-    <select id="findDemand" parameterType="string" resultType="cn.wy.bs.dto.DemandDto">
+    <select id="getDemand" parameterType="string" resultType="cn.wy.bs.dto.DemandDto">
         <!--SELECT *-->
         <!--FROM t_demand-->
         <!--WHERE isdelete=0-->
@@ -12,10 +12,10 @@
         <!--</if>-->
         SELECT d.*,p.PROJECTNAME,p.PROJECTNO
         FROM t_demand d,t_project p
-        WHERE d.ISDELETE=0 AND p.ISDELETE=0
-        AND d.PROJECTID=p.ID
+        WHERE d.ISDELETE = 0 AND p.ISDELETE = 0
+        AND d.PROJECTID = p.ID
         <if test="userName!=null and userName!=''">
-            AND d.CREATENAME=#{userName}
+            AND d.CREATENAME = #{userName}
         </if>
     </select>
 
@@ -38,12 +38,12 @@
         #{createTime},
         #{createName},
         0,
-        #{demandNO},
+        #{demandNo},
         #{demandName},
         #{demandDes},
         #{demandType},
-        #{projectID},
-        #{accID},
+        #{projectId},
+        #{accId},
         0
         )
     </insert>

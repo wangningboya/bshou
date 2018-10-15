@@ -12,7 +12,7 @@ public class Userinfo {
     /**
      * 用户ID
      */
-    private String userID;
+    private String userId;
 
     /**
      * 姓名
@@ -32,7 +32,7 @@ public class Userinfo {
     /**
      * 部门ID
      */
-    private String depID;
+    private String depId;
 
     /**
      * 邮箱
@@ -44,12 +44,12 @@ public class Userinfo {
      */
     private String phone;
 
-    public String getUserID() {
-        return userID;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUserID(String userID) {
-        this.userID = userID;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getUserName() {
@@ -76,12 +76,12 @@ public class Userinfo {
         this.resName = resName;
     }
 
-    public String getDepID() {
-        return depID;
+    public String getDepId() {
+        return depId;
     }
 
-    public void setDepID(String depID) {
-        this.depID = depID;
+    public void setDepId(String depId) {
+        this.depId = depId;
     }
 
     public String getEmail() {
@@ -98,5 +98,19 @@ public class Userinfo {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+        super.toString();
+        return "Userinfo{" +
+                "userId='" + userId + '\'' +
+                ", userName='" + userName + '\'' +
+                ", resLevel='" + resLevel + '\'' +
+                ", resName='" + resName + '\'' +
+                ", depId='" + depId + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
     }
 }

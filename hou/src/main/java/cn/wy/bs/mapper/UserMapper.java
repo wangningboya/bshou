@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface UserMapper {
 
-    public int findByUserNameAndPassword(HashMap<String,Object> map);
+    int getByUserNameAndPassword(HashMap<String, Object> map);
 
-    public User findByUserName(HashMap<String,Object> map);
+    User getByUserName(HashMap<String, Object> map);
 
-    public List<Auth> findAuthByRoleId(String roleId);
+    List<Auth> getAuthByRoleId(String roleId);
 
-    public List<User> getUserByRoleId(HashMap<String,Object> map);
+    List<User> getUserByRoleId(HashMap<String, Object> map);
 }

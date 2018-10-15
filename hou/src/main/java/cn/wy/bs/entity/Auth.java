@@ -20,7 +20,7 @@ public class Auth extends Base{
     /**
      * 父ID
      */
-    private String parentID;
+    private String parentId;
 
     /**
      * 是否禁止（0未禁止/1禁止）
@@ -56,12 +56,12 @@ public class Auth extends Base{
         this.authName = authName;
     }
 
-    public String getParentID() {
-        return parentID;
+    public String getParentId() {
+        return parentId;
     }
 
-    public void setParentID(String parentID) {
-        this.parentID = parentID;
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
     }
 
     public Integer getVisiable() {
@@ -102,5 +102,19 @@ public class Auth extends Base{
 
     public void setDescribe(String describe) {
         this.describe = describe;
+    }
+
+    @Override
+    public String toString() {
+        super.toString();
+        return "Auth{" +
+                "authName='" + authName + '\'' +
+                ", parentId='" + parentId + '\'' +
+                ", visiable=" + visiable +
+                ", url='" + url + '\'' +
+                ", image='" + image + '\'' +
+                ", rank=" + rank +
+                ", describe='" + describe + '\'' +
+                '}';
     }
 }

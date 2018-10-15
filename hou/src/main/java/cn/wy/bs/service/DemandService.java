@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface DemandService {
 
-    //获取需求信息
-    public List<DemandDto> findDemand(HashMap<String,Object> map);
+    // 获取需求信息
+    List<DemandDto> getDemand(HashMap<String, Object> map);
 
-    //添加需求
-    public void addDemand(Demand demand);
+    // 添加需求
+    void saveDemand(Demand demand);
 }

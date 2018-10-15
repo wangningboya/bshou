@@ -28,18 +28,18 @@ public class LoginController {
     @RequestMapping(value = "/login" , method = RequestMethod.GET)
     public ResponseData login(
             HttpServletRequest request,
-            @RequestParam HashMap<String,Object> map
+            @RequestParam HashMap<String, Object> map
     ){
-        ResponseData responseData=new ResponseData();
+        ResponseData responseData = new ResponseData();
         JSONObject jsonObject = new JSONObject();
-        int count=userService.findByUserNameAndPassword(map);
+        int count = userService.getByUserNameAndPassword(map);
         switch (count){
             case 0:
                 responseData.setRspCode("100001");
                 responseData.setRspMsg("账号或者密码错误！");
                 break;
             case 1:
-                HttpSession session =request.getSession();
+                HttpSession session = request.getSession();
                 session.setAttribute("userName",map.get("userName"));
                 jsonObject.put("userName",session.getAttribute("userName"));
                 responseData.setData(jsonObject);
@@ -54,8 +54,8 @@ public class LoginController {
     public ResponseData logout(
             HttpServletRequest request
     ){
-        ResponseData responseData=new ResponseData();
-        HttpSession session =request.getSession();
+        ResponseData responseData = new ResponseData();
+        HttpSession session = request.getSession();
         session.removeAttribute("userName");
         responseData.setRspCode("000000");
         responseData.setRspMsg("登出成功");

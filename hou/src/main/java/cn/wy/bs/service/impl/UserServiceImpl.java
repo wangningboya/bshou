@@ -19,22 +19,22 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public int findByUserNameAndPassword(HashMap<String,Object> map) {
-        return userMapper.findByUserNameAndPassword(map);
+    public int getByUserNameAndPassword(HashMap<String, Object> map) {
+        return userMapper.getByUserNameAndPassword(map);
     }
 
     @Override
-    public User findByUserName(HashMap<String, Object> map) {
-        return userMapper.findByUserName(map);
+    public User getByUserName(HashMap<String, Object> map) {
+        return userMapper.getByUserName(map);
     }
 
     @Override
-    public List<Auth> findAuthByRoleId(String roleId) {
-        return userMapper.findAuthByRoleId(roleId);
+    public List<Auth> getAuthByRoleId(String roleId) {
+        return userMapper.getAuthByRoleId(roleId);
     }
 
     @Override
-    public List<User> getUserByRoleId(HashMap<String,Object> map) {
+    public List<User> getUserByRoleId(HashMap<String, Object> map) {
         return userMapper.getUserByRoleId(map);
     }
 }

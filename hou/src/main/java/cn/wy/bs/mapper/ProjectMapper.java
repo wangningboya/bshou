@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface ProjectMapper {
 
-    public List<ProjectDto> findProject(HashMap<String, Object> map);
+    List<ProjectDto> getProject(HashMap<String, Object> map);
 }

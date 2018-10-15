@@ -22,12 +22,12 @@ public class ProjectController {
 
     @RequestMapping(value = "/findProject")
     public ResponseData findProject(
-            @RequestParam HashMap<String,Object> map
+            @RequestParam HashMap<String, Object> map
             ){
         ResponseData responseData = new ResponseData();
         JSONObject jsonObject = new JSONObject();
-        List<ProjectDto> projectList = projectService.findProject(map);
-        jsonObject.put("projectList",projectList);
+        List<ProjectDto> projectList = projectService.getProject(map);
+        jsonObject.put("projectList", projectList);
         responseData.setData(jsonObject);
         responseData.setRspCode("000000");
         return responseData;

@@ -12,26 +12,37 @@ public class Authrole {
     /**
      * 角色ID
      */
-    private String roleID;
+    private String roleId;
 
     /**
      * 权限ID
      */
-    private String authID;
+    private String authId;
 
-    public String getRoleID() {
-        return roleID;
+    public String getRoleId() {
+        return roleId;
     }
 
-    public void setRoleID(String roleID) {
-        this.roleID = roleID;
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
     }
 
-    public String getAuthID() {
-        return authID;
+    public String getAuthId() {
+        return authId;
     }
 
-    public void setAuthID(String authID) {
-        this.authID = authID;
+    public void setAuthId(String authId) {
+        this.authId = authId;
+    }
+
+    @Override
+    public String toString() {
+        super.toString();
+        return "Authrole{" +
+                "roleId='" + roleId + '\'' +
+                ", authId='" + authId + '\'' +
+                '}';
     }
 }
+
+

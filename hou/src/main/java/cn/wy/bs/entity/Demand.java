@@ -16,7 +16,7 @@ public class Demand extends Base{
     /**
      * 需求编号
      */
-    private String demandNO;
+    private String demandNo;
 
     /**
      * 需求名称
@@ -36,17 +36,17 @@ public class Demand extends Base{
     /**
      * 项目ID
      */
-    private String projectID;
+    private String projectId;
 
     /**
      * 验收人员ID
      */
-    private String accID;
+    private String accId;
 
     /**
      * 开发人员
      */
-    private String devID;
+    private String devId;
 
     /**
      * 审核理由
@@ -83,6 +83,14 @@ public class Demand extends Base{
      */
     private String closeReason;
 
+    public String getDemandNo() {
+        return demandNo;
+    }
+
+    public void setDemandNo(String demandNo) {
+        this.demandNo = demandNo;
+    }
+
     public String getDemandName() {
         return demandName;
     }
@@ -107,12 +115,28 @@ public class Demand extends Base{
         this.demandType = demandType;
     }
 
-    public String getDevID() {
-        return devID;
+    public String getProjectId() {
+        return projectId;
     }
 
-    public void setDevID(String devID) {
-        this.devID = devID;
+    public void setProjectId(String projectId) {
+        this.projectId = projectId;
+    }
+
+    public String getAccId() {
+        return accId;
+    }
+
+    public void setAccId(String accId) {
+        this.accId = accId;
+    }
+
+    public String getDevId() {
+        return devId;
+    }
+
+    public void setDevId(String devId) {
+        this.devId = devId;
     }
 
     public String getReviewDes() {
@@ -171,27 +195,24 @@ public class Demand extends Base{
         this.closeReason = closeReason;
     }
 
-    public String getDemandNO() {
-        return demandNO;
-    }
-
-    public void setDemandNO(String demandNO) {
-        this.demandNO = demandNO;
-    }
-
-    public String getProjectID() {
-        return projectID;
-    }
-
-    public void setProjectID(String projectID) {
-        this.projectID = projectID;
-    }
-
-    public String getAccID() {
-        return accID;
-    }
-
-    public void setAccID(String accID) {
-        this.accID = accID;
+    @Override
+    public String toString() {
+        super.toString();
+        return "Demand{" +
+                "demandNo='" + demandNo + '\'' +
+                ", demandName='" + demandName + '\'' +
+                ", demandDes='" + demandDes + '\'' +
+                ", demandType=" + demandType +
+                ", projectId='" + projectId + '\'' +
+                ", accId='" + accId + '\'' +
+                ", devId='" + devId + '\'' +
+                ", reviewDes='" + reviewDes + '\'' +
+                ", expTime=" + expTime +
+                ", actTime=" + actTime +
+                ", state=" + state +
+                ", deliverTime=" + deliverTime +
+                ", closeTime=" + closeTime +
+                ", closeReason='" + closeReason + '\'' +
+                '}';
     }
 }

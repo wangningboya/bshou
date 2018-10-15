@@ -34,7 +34,7 @@ public class User extends Base{
     /**
      * 角色ID
      */
-    private String roleID;
+    private String roleId;
 
     /**
      * 邮箱
@@ -73,12 +73,12 @@ public class User extends Base{
         this.phone = phone;
     }
 
-    public String getRoleID() {
-        return roleID;
+    public String getRoleId() {
+        return roleId;
     }
 
-    public void setRoleID(String roleID) {
-        this.roleID = roleID;
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
     }
 
     public String getEmail() {
@@ -87,5 +87,18 @@ public class User extends Base{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        super.toString();
+        return "User{" +
+                "userName='" + userName + '\'' +
+                ", realName='" + realName + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                ", roleId='" + roleId + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

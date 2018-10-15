@@ -21,4 +21,12 @@ public class Resources {
     public void setResName(String resName) {
         this.resName = resName;
     }
+
+    @Override
+    public String toString() {
+        super.toString();
+        return "Resources{" +
+                "resName='" + resName + '\'' +
+                '}';
+    }
 }

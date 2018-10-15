@@ -20,7 +20,7 @@ public class ProjectServiceImpl implements ProjectService{
     ProjectMapper projectMapper;
 
     @Override
-    public List<ProjectDto> findProject(HashMap<String, Object> map) {
-        return projectMapper.findProject(map);
+    public List<ProjectDto> getProject(HashMap<String, Object> map) {
+        return projectMapper.getProject(map);
     }
 }

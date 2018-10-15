@@ -21,4 +21,12 @@ public class Role {
     public void setRoleName(String roleName) {
         this.roleName = roleName;
     }
+
+    @Override
+    public String toString() {
+        super.toString();
+        return "Role{" +
+                "roleName='" + roleName + '\'' +
+                '}';
+    }
 }

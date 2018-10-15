@@ -23,7 +23,7 @@ public class UserController {
 
     @RequestMapping(value = "/userQuery")
     public int findByUserName(
-            @RequestParam HashMap<String,Object> map
+            @RequestParam HashMap<String, Object> map
     ){
         System.out.println("query");
         return 1;
@@ -31,14 +31,14 @@ public class UserController {
 
     @RequestMapping(value = "/getUserAndMenu")
     public ResponseData getUserAndMenu(
-            @RequestParam HashMap<String,Object> map
+            @RequestParam HashMap<String, Object> map
     ){
-        ResponseData responseData=new ResponseData();
+        ResponseData responseData = new ResponseData();
         JSONObject jsonObject = new JSONObject();
-        User user=userService.findByUserName(map);
-        List<Auth> authList=userService.findAuthByRoleId(user.getRoleID());
-        jsonObject.put("user",user);
-        jsonObject.put("authList",authList);
+        User user = userService.getByUserName(map);
+        List<Auth> authList = userService.getAuthByRoleId(user.getRoleId());
+        jsonObject.put("user", user);
+        jsonObject.put("authList", authList);
         responseData.setData(jsonObject);
         responseData.setRspCode("000000");
         return responseData;
@@ -46,12 +46,12 @@ public class UserController {
 
     @RequestMapping(value = "/getUserByRoleId")
     public ResponseData getUserByRoleId(
-            @RequestParam HashMap<String,Object> map
+            @RequestParam HashMap<String, Object> map
     ){
-        ResponseData responseData=new ResponseData();
+        ResponseData responseData = new ResponseData();
         JSONObject jsonObject = new JSONObject();
-        List<User> userList=userService.getUserByRoleId(map);
-        jsonObject.put("userList",userList);
+        List<User> userList = userService.getUserByRoleId(map);
+        jsonObject.put("userList", userList);
         responseData.setData(jsonObject);
         responseData.setRspCode("000000");
         return responseData;

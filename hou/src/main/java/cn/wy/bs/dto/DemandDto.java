@@ -10,7 +10,7 @@ public class DemandDto extends Demand{
     /**
      * 项目编号
      */
-    private String projectNO;
+    private String projectNo;
 
     /**
      * 项目名称
@@ -25,12 +25,11 @@ public class DemandDto extends Demand{
         this.projectName = projectName;
     }
 
-    public String getProjectNO() {
-        return projectNO;
+    public String getProjectNo() {
+        return projectNo;
     }
 
-    public void setProjectNO(String projectNO) {
-        this.projectNO = projectNO;
+    public void setProjectNo(String projectNo) {
+        this.projectNo = projectNo;
     }
-
 }
