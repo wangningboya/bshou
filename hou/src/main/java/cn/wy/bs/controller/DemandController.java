@@ -85,7 +85,7 @@ public class DemandController {
     }
 
     @RequestMapping(value = "/addDemand")
-    public ResponseData addProject(
+    public ResponseData addDemand(
             HttpServletRequest request,
             @RequestParam HashMap<String, Object> map
     ){
@@ -102,6 +102,34 @@ public class DemandController {
         demand.setProjectId(map.get("projectId").toString());
         try {
             demandService.saveDemand(demand);
+            responseData.setRspMsg("操作成功");
+            responseData.setRspCode("000000");
+        }catch (Exception e){
+            responseData.setRspMsg(e.toString());
+            responseData.setRspCode("999999");
+        }
+        return responseData;
+    }
+
+    @RequestMapping(value = "/updateDemand")
+    public ResponseData updateDemand(
+            HttpServletRequest request,
+            @RequestParam HashMap<String, Object> map
+    ){
+        HttpSession session = request.getSession();
+        ResponseData responseData = new ResponseData();
+        Demand demand = new Demand();
+        demand.setID(map.get("id").toString());
+        demand.setModifiTime(new Date());
+        demand.setModifiName(session.getAttribute("userName").toString());
+        demand.setDemandName(map.get("demandName").toString());
+        demand.setDemandDes(map.get("demandDes").toString());
+        demand.setDemandNo(map.get("demandNo").toString());
+        demand.setDemandType(Integer.parseInt(map.get("demandType").toString()));
+        demand.setAccId(map.get("accId").toString());
+        demand.setProjectId(map.get("projectId").toString());
+        try {
+            demandService.updateDemand(demand);
             responseData.setRspMsg("操作成功");
             responseData.setRspCode("000000");
         }catch (Exception e){

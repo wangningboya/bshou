@@ -3,6 +3,12 @@ package cn.wy.bs.dto;
 import cn.wy.bs.utils.Base;
 
 public class ProjectDto extends Base {
+
+    /**
+     * 项目ID
+     */
+    private String projectId;
+
     /**
      * 项目编号
      */
@@ -53,5 +59,13 @@ public class ProjectDto extends Base {
 
     public void setPMName(String PMName) {
         this.PMName = PMName;
+    }
+
+    public String getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(String projectId) {
+        this.projectId = projectId;
     }
 }

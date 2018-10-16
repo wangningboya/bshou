@@ -8,6 +8,11 @@ import java.util.Date;
 public class DemandDto extends Demand{
 
     /**
+     * 项目ID
+     */
+    private String projectId;
+
+    /**
      * 项目编号
      */
     private String projectNo;
@@ -16,6 +21,11 @@ public class DemandDto extends Demand{
      * 项目名称
      */
     private String projectName;
+
+    /**
+     * 项目经理
+     */
+    private String PMName;
 
     public String getProjectName() {
         return projectName;
@@ -31,5 +41,23 @@ public class DemandDto extends Demand{
 
     public void setProjectNo(String projectNo) {
         this.projectNo = projectNo;
+    }
+
+    @Override
+    public String getProjectId() {
+        return projectId;
+    }
+
+    @Override
+    public void setProjectId(String projectId) {
+        this.projectId = projectId;
+    }
+
+    public String getPMName() {
+        return PMName;
+    }
+
+    public void setPMName(String PMName) {
+        this.PMName = PMName;
     }
 }

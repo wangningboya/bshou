@@ -20,4 +20,7 @@ public interface DemandService {
 
     // 添加需求
     void saveDemand(Demand demand);
+
+    //修改需求
+    void updateDemand(Demand demand);
 }

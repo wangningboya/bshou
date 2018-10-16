@@ -16,4 +16,6 @@ public interface DemandMapper {
     List<DemandDto> getDemandList(Page<DemandDto> demandDtoPage);
 
     void add(Demand demand);
+
+	void updateById(Demand demand);
 }

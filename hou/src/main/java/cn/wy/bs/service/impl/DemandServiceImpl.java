@@ -38,4 +38,9 @@ public class DemandServiceImpl implements DemandService{
     public void saveDemand(Demand demand) {
         demandMapper.add(demand);
     }
+
+    @Override
+    public void updateDemand(Demand demand) {
+        demandMapper.updateById(demand);
+    }
 }

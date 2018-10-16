@@ -4,9 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.wy.bs.mapper.DemandMapper">
     <select id="getDemand" parameterType="String" resultType="cn.wy.bs.dto.DemandDto">
-        SELECT d.*,p.PROJECTNAME,p.PROJECTNO
-        FROM t_demand d,t_project p
-        WHERE d.ISDELETE = 0 AND p.ISDELETE = 0
+        SELECT d.*,p.PROJECTNAME,p.PROJECTNO,p.id 'projectId',u.REALNAME 'PMName'
+        FROM t_demand d,t_project p,t_user u
+        WHERE d.ISDELETE = 0 AND p.ISDELETE = 0 AND p.PMID = u.USERNAME
         AND d.PROJECTID = p.ID
         <if test="userName!=null and userName!=''">
             AND d.CREATENAME = #{userName}
@@ -22,15 +22,27 @@
         <if test="userName!=null and userName!=''">
             AND d.CREATENAME = #{userName}
         </if>
+        <if test="state!=null and state!=''">
+            AND d.STATE = #{state}
+        </if>
+        <if test="demandName!=null and demandName!=''">
+            AND d.DEMANDNAME LIKE concat('%',#{demandName},'%')
+        </if>
     </select>
 
     <select id="getDemandList" parameterType="cn.wy.bs.utils.Page" resultType="cn.wy.bs.dto.DemandDto">
-        SELECT d.*,p.PROJECTNAME,p.PROJECTNO
-        FROM t_demand d,t_project p
-        WHERE d.ISDELETE = 0 AND p.ISDELETE = 0
+        SELECT d.*,p.PROJECTNAME,p.PROJECTNO,p.id 'projectId',u.REALNAME 'PMName'
+        FROM t_demand d,t_project p,t_user u
+        WHERE d.ISDELETE = 0 AND p.ISDELETE = 0 AND p.PMID = u.USERNAME
         AND d.PROJECTID = p.ID
         <if test="params.map.userName!=null and params.map.userName!=''">
             AND d.CREATENAME = #{params.map.userName}
+        </if>
+        <if test="params.map.state!=null and params.map.state!=''">
+            AND d.STATE = #{params.map.state}
+        </if>
+        <if test="params.map.demandName!=null and params.map.demandName!=''">
+            AND d.DEMANDNAME LIKE concat('%',#{params.map.demandName},'%')
         </if>
         ORDER BY d.CREATETIME DESC
         LIMIT #{offset},#{pageSize}
@@ -64,5 +76,19 @@
         0
         )
     </insert>
+
+    <update id="updateById" parameterType="cn.wy.bs.entity.Demand">
+        UPDATE t_demand
+        SET
+        MODIFITIME=#{modifiTime},
+        MODIFINAME=#{modifiName},
+        DEMANDNO=#{demandNo},
+        DEMANDNAME=#{demandName},
+        DEMANDDES=#{demandDes},
+        DEMANDTYPE=#{demandType},
+        PROJECTID=#{projectId},
+        ACCID=#{accId}
+        WHERE id=#{ID}
+    </update>
 
 </mapper>
