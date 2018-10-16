@@ -64,6 +64,11 @@ public class Demand extends Base{
     private Integer actTime;
 
     /**
+     *
+     */
+    private Date deliveryTime;
+
+    /**
      * 状态（0提出需求/1需求审核/2审核通过/3审核未通过/4预估时间/5开发开始/6开发暂停/7开发结束/8开发关闭/9需求验收/10验收通过/11验收未通过）
      */
     private Integer state;
@@ -163,6 +168,14 @@ public class Demand extends Base{
         this.actTime = actTime;
     }
 
+    public Date getDeliveryTime() {
+        return deliveryTime;
+    }
+
+    public void setDeliveryTime(Date deliveryTime) {
+        this.deliveryTime = deliveryTime;
+    }
+
     public Integer getState() {
         return state;
     }
@@ -197,7 +210,6 @@ public class Demand extends Base{
 
     @Override
     public String toString() {
-        super.toString();
         return "Demand{" +
                 "demandNo='" + demandNo + '\'' +
                 ", demandName='" + demandName + '\'' +
@@ -209,6 +221,7 @@ public class Demand extends Base{
                 ", reviewDes='" + reviewDes + '\'' +
                 ", expTime=" + expTime +
                 ", actTime=" + actTime +
+                ", deliveryTime=" + deliveryTime +
                 ", state=" + state +
                 ", deliverTime=" + deliverTime +
                 ", closeTime=" + closeTime +

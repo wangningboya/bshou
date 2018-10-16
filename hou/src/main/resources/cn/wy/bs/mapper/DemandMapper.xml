@@ -3,13 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.wy.bs.mapper.DemandMapper">
-    <select id="getDemand" parameterType="string" resultType="cn.wy.bs.dto.DemandDto">
-        <!--SELECT *-->
-        <!--FROM t_demand-->
-        <!--WHERE isdelete=0-->
-        <!--<if test="userName!=null and userName!=''">-->
-            <!--AND devID=#{userName}-->
-        <!--</if>-->
+    <select id="getDemand" parameterType="String" resultType="cn.wy.bs.dto.DemandDto">
         SELECT d.*,p.PROJECTNAME,p.PROJECTNO
         FROM t_demand d,t_project p
         WHERE d.ISDELETE = 0 AND p.ISDELETE = 0
@@ -17,6 +11,29 @@
         <if test="userName!=null and userName!=''">
             AND d.CREATENAME = #{userName}
         </if>
+        ORDER BY d.CREATETIME DESC
+    </select>
+
+    <select id="getDemandNum" parameterType="String" resultType="int">
+        SELECT count(*)
+        FROM t_demand d,t_project p
+        WHERE d.ISDELETE = 0 AND p.ISDELETE = 0
+        AND d.PROJECTID = p.ID
+        <if test="userName!=null and userName!=''">
+            AND d.CREATENAME = #{userName}
+        </if>
+    </select>
+
+    <select id="getDemandList" parameterType="cn.wy.bs.utils.Page" resultType="cn.wy.bs.dto.DemandDto">
+        SELECT d.*,p.PROJECTNAME,p.PROJECTNO
+        FROM t_demand d,t_project p
+        WHERE d.ISDELETE = 0 AND p.ISDELETE = 0
+        AND d.PROJECTID = p.ID
+        <if test="params.map.userName!=null and params.map.userName!=''">
+            AND d.CREATENAME = #{params.map.userName}
+        </if>
+        ORDER BY d.CREATETIME DESC
+        LIMIT #{offset},#{pageSize}
     </select>
 
     <insert id="add" parameterType="cn.wy.bs.entity.Demand">

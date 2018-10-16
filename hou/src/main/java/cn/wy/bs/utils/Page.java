@@ -7,16 +7,19 @@ import java.util.Map;
 public class Page<T> {
 
     // 当前页码
-    private int pageNo;
+    private int pageNum;
 
     // 每页行数
     private int pageSize;
 
+    //偏移量
+    private int offset;
+
     // 总记录数
-    private int totalRecord;
+    private int total;
 
     // 总页数
-    private int totalPage;
+    private int pages;
 
     // 查询条件
     private Map<String, Object> params;
@@ -24,13 +27,12 @@ public class Page<T> {
     // 数据
     private List<T> list=new ArrayList<T>();
 
-
-    public int getPageNo() {
-        return pageNo;
+    public int getPageNum() {
+        return pageNum;
     }
 
-    public void setPageNo(int pageNo) {
-        this.pageNo = pageNo;
+    public void setPageNum(int pageNum) {
+        this.pageNum = pageNum;
     }
 
     public int getPageSize() {
@@ -41,21 +43,29 @@ public class Page<T> {
         this.pageSize = pageSize;
     }
 
-    public int getTotalRecord() {
-        return totalRecord;
+    public int getOffset() {
+        return offset;
     }
 
-    public void setTotalRecord(int totalRecord) {
-        this.totalRecord = totalRecord;
+    public void setOffset(int offset) {
+        this.offset = offset;
     }
 
-    public int getTotalPage() {
-        double a = ((double) totalRecord/pageSize);
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public int getPages() {
+        double a = ((double) total/pageSize);
         return (int) Math.ceil(a);
     }
 
-    public void setTotalPage(int totalPage) {
-        this.totalPage = totalPage;
+    public void setPages(int pages) {
+        this.pages = pages;
     }
 
     public Map<String, Object> getParams() {
@@ -66,11 +76,11 @@ public class Page<T> {
         this.params = params;
     }
 
-    public List getList() {
+    public List<T> getList() {
         return list;
     }
 
-    public void setList(List list) {
+    public void setList(List<T> list) {
         this.list = list;
     }
 }
