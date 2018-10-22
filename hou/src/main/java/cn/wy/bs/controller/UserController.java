@@ -22,11 +22,16 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value = "/userQuery")
-    public int findByUserName(
+    public ResponseData findByUserName(
             @RequestParam HashMap<String, Object> map
     ){
-        System.out.println("query");
-        return 1;
+        ResponseData responseData = new ResponseData();
+        JSONObject jsonObject = new JSONObject();
+        User user = userService.getByUserName(map);
+        jsonObject.put("user",user);
+        responseData.setData(jsonObject);
+        responseData.setRspCode("000000");
+        return  responseData;
     }
 
     @RequestMapping(value = "/getUserAndMenu")

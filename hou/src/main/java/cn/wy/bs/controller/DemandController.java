@@ -6,10 +6,7 @@ import cn.wy.bs.service.DemandService;
 import cn.wy.bs.utils.Page;
 import cn.wy.bs.utils.ResponseData;
 import com.alibaba.fastjson.JSONObject;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -70,7 +67,49 @@ public class DemandController {
         ResponseData responseData = new ResponseData();
         JSONObject jsonObject = new JSONObject();
         try{
-            List<DemandDto> demandList = demandService.getDemand(map);
+            DemandDto demandDto = demandService.getDemand(map);
+            jsonObject.put("demand", demandDto);
+            responseData.setData(jsonObject);
+            responseData.setRspCode("000000");
+        }catch (Exception e){
+            ResponseData responseData1 = new ResponseData();
+            responseData1.setRspCode("999999");
+            responseData.setRspMsg("查询失败");
+            System.out.println(e);
+            return responseData1;
+        }
+        return responseData;
+    }
+
+    @RequestMapping(value = "/getDemandListByDevId" , method = RequestMethod.GET)
+    public ResponseData getDemandListByDevId(
+            @RequestParam HashMap<String, Object> map
+    ){
+        ResponseData responseData = new ResponseData();
+        JSONObject jsonObject = new JSONObject();
+        try{
+            List<DemandDto> demandList = demandService.getDemandListByDevId(map);
+            jsonObject.put("demandList", demandList);
+            responseData.setData(jsonObject);
+            responseData.setRspCode("000000");
+        }catch (Exception e){
+            ResponseData responseData1 = new ResponseData();
+            responseData1.setRspCode("999999");
+            responseData.setRspMsg("查询失败");
+            System.out.println(e);
+            return responseData1;
+        }
+        return responseData;
+    }
+
+    @RequestMapping(value = "/getDemandListByCreactName" , method = RequestMethod.GET)
+    public ResponseData getDemandListByCreactName(
+            @RequestParam HashMap<String, Object> map
+    ){
+        ResponseData responseData = new ResponseData();
+        JSONObject jsonObject = new JSONObject();
+        try{
+            List<DemandDto> demandList = demandService.getDemandListByCreactName(map);
             jsonObject.put("demandList", demandList);
             responseData.setData(jsonObject);
             responseData.setRspCode("000000");

@@ -20,8 +20,18 @@ public class DemandServiceImpl implements DemandService{
     DemandMapper demandMapper;
 
     @Override
-    public List<DemandDto> getDemand(HashMap<String, Object> map) {
+    public DemandDto getDemand(HashMap<String, Object> map) {
         return demandMapper.getDemand(map);
+    }
+
+    @Override
+    public List<DemandDto> getDemandListByDevId(HashMap<String, Object> map) {
+        return demandMapper.getDemandListByDevId(map);
+    }
+
+    @Override
+    public List<DemandDto> getDemandListByCreactName(HashMap<String, Object> map) {
+        return demandMapper.getDemandListByCreactName(map);
     }
 
     @Override
@@ -43,4 +53,6 @@ public class DemandServiceImpl implements DemandService{
     public void updateDemand(Demand demand) {
         demandMapper.updateById(demand);
     }
+
+
 }

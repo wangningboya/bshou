@@ -64,7 +64,7 @@ public class Demand extends Base{
     private Integer actTime;
 
     /**
-     *
+     *  交付时间
      */
     private Date deliveryTime;
 
@@ -76,7 +76,7 @@ public class Demand extends Base{
     /**
      * 开发结束时间
      */
-    private Date deliverTime;
+    private Date developTime;
 
     /**
      * 关闭时间
@@ -184,12 +184,12 @@ public class Demand extends Base{
         this.state = state;
     }
 
-    public Date getDeliverTime() {
-        return deliverTime;
+    public Date getDevelopTime() {
+        return developTime;
     }
 
-    public void setDeliverTime(Date deliverTime) {
-        this.deliverTime = deliverTime;
+    public void setDevelopTime(Date developTime) {
+        this.developTime = developTime;
     }
 
     public Date getCloseTime() {
@@ -223,7 +223,7 @@ public class Demand extends Base{
                 ", actTime=" + actTime +
                 ", deliveryTime=" + deliveryTime +
                 ", state=" + state +
-                ", deliverTime=" + deliverTime +
+                ", deliverTime=" + developTime +
                 ", closeTime=" + closeTime +
                 ", closeReason='" + closeReason + '\'' +
                 '}';

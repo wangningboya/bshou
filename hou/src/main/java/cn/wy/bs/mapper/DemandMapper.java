@@ -9,7 +9,11 @@ import java.util.List;
 
 public interface DemandMapper {
 
-    List<DemandDto> getDemand(HashMap<String, Object> map);
+    DemandDto getDemand(HashMap<String, Object> map);
+
+	List<DemandDto> getDemandListByDevId(HashMap<String, Object> map);
+
+	List<DemandDto> getDemandListByCreactName(HashMap<String, Object> map);
 
     int getDemandNum(HashMap<String, Object> map);
 
@@ -18,4 +22,6 @@ public interface DemandMapper {
     void add(Demand demand);
 
 	void updateById(Demand demand);
+
+
 }

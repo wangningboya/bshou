@@ -2,6 +2,8 @@ package cn.wy.bs.utils;
 
 public class ResponseData {
 
+
+
     private Object data;
 
     private String rspCode;

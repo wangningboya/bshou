@@ -11,6 +11,9 @@
         <if test="userName!=null and userName!=''">
             AND d.CREATENAME = #{userName}
         </if>
+        <if test="id!=null and id!=''">
+            AND d.id = #{id}
+        </if>
         ORDER BY d.CREATETIME DESC
     </select>
 
@@ -20,7 +23,8 @@
         WHERE d.ISDELETE = 0 AND p.ISDELETE = 0
         AND d.PROJECTID = p.ID
         <if test="userName!=null and userName!=''">
-            AND d.CREATENAME = #{userName}
+            AND (d.CREATENAME = #{userName}
+            OR d.DEVID = #{userName})
         </if>
         <if test="state!=null and state!=''">
             AND d.STATE = #{state}
@@ -36,7 +40,8 @@
         WHERE d.ISDELETE = 0 AND p.ISDELETE = 0 AND p.PMID = u.USERNAME
         AND d.PROJECTID = p.ID
         <if test="params.map.userName!=null and params.map.userName!=''">
-            AND d.CREATENAME = #{params.map.userName}
+            AND (d.CREATENAME = #{params.map.userName}
+            OR d.DEVID = #{params.map.userName})
         </if>
         <if test="params.map.state!=null and params.map.state!=''">
             AND d.STATE = #{params.map.state}
@@ -46,6 +51,28 @@
         </if>
         ORDER BY d.CREATETIME DESC
         LIMIT #{offset},#{pageSize}
+    </select>
+
+    <select id="getDemandListByDevId" parameterType="String" resultType="cn.wy.bs.dto.DemandDto">
+        SELECT d.*,p.PROJECTNAME,p.PROJECTNO,p.id 'projectId',u.REALNAME 'PMName'
+        FROM t_demand d,t_project p,t_user u
+        WHERE d.ISDELETE = 0 AND p.ISDELETE = 0 AND p.PMID = u.USERNAME
+        AND d.PROJECTID = p.ID
+        <if test="userName!=null and userName!=''">
+            AND d.DEVID = #{userName}
+        </if>
+        ORDER BY d.DELIVERYTIME ASC
+    </select>
+
+    <select id="getDemandListByCreactName" parameterType="String" resultType="cn.wy.bs.dto.DemandDto">
+        SELECT d.*,p.PROJECTNAME,p.PROJECTNO,p.id 'projectId',u.REALNAME 'PMName'
+        FROM t_demand d,t_project p,t_user u
+        WHERE d.ISDELETE = 0 AND p.ISDELETE = 0 AND p.PMID = u.USERNAME
+        AND d.PROJECTID = p.ID
+        <if test="userName!=null and userName!=''">
+            AND d.CREATENAME = #{userName}
+        </if>
+        ORDER BY d.CREATENAME DESC
     </select>
 
     <insert id="add" parameterType="cn.wy.bs.entity.Demand">
