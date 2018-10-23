@@ -27,6 +27,11 @@ public class DemandDto extends Demand{
      */
     private String PMName;
 
+    /**
+     * 验收人员
+     */
+    private String accName;
+
     public String getProjectName() {
         return projectName;
     }
@@ -59,5 +64,13 @@ public class DemandDto extends Demand{
 
     public void setPMName(String PMName) {
         this.PMName = PMName;
+    }
+
+    public String getAccName() {
+        return accName;
+    }
+
+    public void setAccName(String accName) {
+        this.accName = accName;
     }
 }
