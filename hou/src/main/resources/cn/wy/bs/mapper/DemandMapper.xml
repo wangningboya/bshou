@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.wy.bs.mapper.DemandMapper">
     <select id="getDemand" parameterType="String" resultType="cn.wy.bs.dto.DemandDto">
-        SELECT d.*,p.PROJECTNAME,p.PROJECTNO,p.id 'projectId',u.REALNAME 'PMName'
+        SELECT d.*,p.PROJECTNAME,p.PROJECTNO,u.REALNAME 'PMName'
         FROM t_demand d,t_project p,t_user u
         WHERE d.ISDELETE = 0 AND p.ISDELETE = 0 AND p.PMID = u.USERNAME
         AND d.PROJECTID = p.ID
@@ -35,29 +35,28 @@
     </select>
 
     <select id="getDemandList" parameterType="cn.wy.bs.utils.Page" resultType="cn.wy.bs.dto.DemandDto">
-        SELECT d.*,p.PROJECTNAME,p.PROJECTNO,p.id 'projectId',u.REALNAME 'PMName'
+        SELECT d.*,p.PROJECTNAME,p.PROJECTNO,u.REALNAME 'PMName'
         FROM t_demand d,t_project p,t_user u
         WHERE d.ISDELETE = 0 AND p.ISDELETE = 0 AND p.PMID = u.USERNAME
         AND d.PROJECTID = p.ID
-        <if test="params.map.userName!=null and params.map.userName!=''">
-            AND (d.CREATENAME = #{params.map.userName}
-            OR d.DEVID = #{params.map.userName})
+        <if test="userName!=null and userName!=''">
+            AND (d.CREATENAME = #{userName}
+            OR d.DEVID = #{userName})
         </if>
-        <if test="params.map.state!=null and params.map.state!=''">
-            AND d.STATE = #{params.map.state}
+        <if test="state!=null and state!=''">
+            AND d.STATE = #{state}
         </if>
-        <if test="params.map.demandName!=null and params.map.demandName!=''">
-            AND d.DEMANDNAME LIKE concat('%',#{params.map.demandName},'%')
+        <if test="demandName!=null and demandName!=''">
+            AND d.DEMANDNAME LIKE concat('%',#{demandName},'%')
         </if>
         ORDER BY d.CREATETIME DESC
-        LIMIT #{offset},#{pageSize}
     </select>
 
     <select id="getDemandListByDevId" parameterType="String" resultType="cn.wy.bs.dto.DemandDto">
-        SELECT d.*,p.PROJECTNAME,p.PROJECTNO,p.id 'projectId',u.REALNAME 'PMName'
+        SELECT d.*,p.PROJECTNAME,p.PROJECTNO,u.REALNAME 'PMName'
         FROM t_demand d,t_project p,t_user u
-        WHERE d.ISDELETE = 0 AND p.ISDELETE = 0 AND p.PMID = u.USERNAME
-        AND d.PROJECTID = p.ID
+        WHERE d.ISDELETE = 0 AND p.ISDELETE = 0 AND u.ISDELETE = 0
+        AND d.PROJECTID = p.ID AND p.PMID = u.USERNAME
         <if test="userName!=null and userName!=''">
             AND d.DEVID = #{userName}
         </if>
@@ -65,7 +64,7 @@
     </select>
 
     <select id="getDemandListByCreactName" parameterType="String" resultType="cn.wy.bs.dto.DemandDto">
-        SELECT d.*,p.PROJECTNAME,p.PROJECTNO,p.id 'projectId',u.REALNAME 'PMName'
+        SELECT d.*,p.PROJECTNAME,p.PROJECTNO,u.REALNAME 'PMName'
         FROM t_demand d,t_project p,t_user u
         WHERE d.ISDELETE = 0 AND p.ISDELETE = 0 AND p.PMID = u.USERNAME
         AND d.PROJECTID = p.ID

@@ -2,11 +2,12 @@ package cn.wy.bs.mapper;
 
 import cn.wy.bs.entity.Auth;
 import cn.wy.bs.entity.User;
+import cn.wy.bs.utils.BaseMapper;
 
 import java.util.HashMap;
 import java.util.List;
 
-public interface UserMapper {
+public interface UserMapper extends BaseMapper<User> {
 
     int getByUserNameAndPassword(HashMap<String, Object> map);
 

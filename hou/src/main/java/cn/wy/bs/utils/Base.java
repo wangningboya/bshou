@@ -6,6 +6,7 @@ public class Base {
     /**
      * ID
      */
+    @javax.persistence.Id
     private String ID;
 
     /**

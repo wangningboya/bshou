@@ -2,10 +2,9 @@ package cn.wy.bs.service;
 
 import cn.wy.bs.dto.DemandDto;
 import cn.wy.bs.entity.Demand;
-import cn.wy.bs.utils.Page;
+import com.github.pagehelper.PageInfo;
 
 import java.util.HashMap;
-import java.util.List;
 
 public interface DemandService {
 
@@ -16,13 +15,13 @@ public interface DemandService {
     int getDemandNum(HashMap<String, Object> map);
 
     // 获取需求信息列表
-    List<DemandDto> getDemandList(Page<DemandDto> demandDtoPage);
+    PageInfo<DemandDto> getDemandList(Integer pageNum, Integer pageSize, HashMap<String, Object> map);
 
     // 根据开发人员获取需求信息列表
-    List<DemandDto> getDemandListByDevId(HashMap<String, Object> map);
+    PageInfo<DemandDto> getDemandListByDevId(Integer pageNum, Integer pageSize, HashMap<String, Object> map);
 
     // 根据创建人员获取需求信息列表
-    List<DemandDto> getDemandListByCreactName(HashMap<String, Object> map);
+    PageInfo<DemandDto> getDemandListByCreactName(int pageNum, int pageSize, HashMap<String, Object> map);
 
     // 添加需求
     void saveDemand(Demand demand);
