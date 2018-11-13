@@ -1,37 +1,44 @@
 package cn.wy.bs.utils;
 
+import javax.persistence.Column;
 import java.util.Date;
 
 public class BaseModal {
     /**
      * ID
      */
+    @Column(name="ID")
     @javax.persistence.Id
     private String ID;
 
     /**
      * 创建时间
      */
+    @Column(name="CREATETIME")
     private Date createTime;
 
     /**
      * 创建者
      */
+    @Column(name="CREATENAME")
     private String createName;
 
     /**
      * 修改时间
      */
+    @Column(name="MODIFITIME")
     private Date modifiTime;
 
     /**
      * 修改者
      */
+    @Column(name="MODIFINAME")
     private String modifiName;
 
     /**
      * 是否删除（0未删除/1删除）
      */
+    @Column(name="ISDELETE")
     private Integer isDelete;
 
     public String getID() {

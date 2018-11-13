@@ -2,7 +2,9 @@ package cn.wy.bs.controller;
 
 import cn.wy.bs.dto.DemandDto;
 import cn.wy.bs.entity.Demand;
+import cn.wy.bs.entity.DemandLog;
 import cn.wy.bs.service.DemandService;
+import cn.wy.bs.utils.BaseUtil;
 import cn.wy.bs.utils.Page;
 import cn.wy.bs.utils.ResponseData;
 import com.alibaba.fastjson.JSONObject;
@@ -112,21 +114,31 @@ public class DemandController {
 	) {
 		ResponseData responseData = new ResponseData();
 		Demand demand = new Demand();
+		DemandLog demandLog = new DemandLog();
+
 		demand.setCreateTime(new Date());
 		demand.setCreateName(session.getAttribute("userName").toString());
+		demand.setID(BaseUtil.getUUID());
 		demand.setDemandName(map.get("demandName").toString());
 		demand.setDemandDes(map.get("demandDes").toString());
 		demand.setDemandNo(map.get("demandNo").toString());
 		demand.setDemandType(Integer.parseInt(map.get("demandType").toString()));
 		demand.setAccId(map.get("accId").toString());
 		demand.setProjectId(map.get("projectId").toString());
+		demand.setIsDelete(0);
+		demand.setState(0);
+
+		demandLog.setOpeId(session.getAttribute("userName").toString());
+		demandLog.setCreateName(session.getAttribute("userName").toString());
+		demandLog.setCreateTime(new Date());
 		try {
 			demandService.saveDemand(demand);
 			responseData.setRspMsg("操作成功");
 			responseData.setRspCode("000000");
 		} catch (Exception e) {
-			responseData.setRspMsg(e.toString());
-			responseData.setRspCode("999999");
+			throw e;
+//			responseData.setRspMsg(e.toString());
+//			responseData.setRspCode("999999");
 		}
 		return responseData;
 	}
@@ -156,6 +168,15 @@ public class DemandController {
 			responseData.setRspMsg(e.toString());
 			responseData.setRspCode("999999");
 		}
+		return responseData;
+	}
+
+	@RequestMapping(value = "/getDemandLogById", method = RequestMethod.GET)
+	public ResponseData getDemandLogById(
+			@RequestParam HashMap<String, Object> map
+	) {
+		ResponseData responseData = new ResponseData();
+
 		return responseData;
 	}
 }

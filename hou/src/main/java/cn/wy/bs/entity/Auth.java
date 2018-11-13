@@ -2,6 +2,9 @@ package cn.wy.bs.entity;
 
 import cn.wy.bs.utils.BaseModal;
 
+import javax.persistence.Column;
+import javax.persistence.Table;
+
 /**
  * 
  * 
@@ -9,42 +12,50 @@ import cn.wy.bs.utils.BaseModal;
  * 
  * @date 2018-09-28
  */
+@Table(name="t_auth")
 public class Auth extends BaseModal {
 
 
     /**
      * 权限名称
      */
+    @Column(name="AUTHNAME")
     private String authName;
 
     /**
      * 父ID
      */
+    @Column(name="PARENTID")
     private String parentId;
 
     /**
      * 是否禁止（0未禁止/1禁止）
      */
+    @Column(name="VISIABLE")
     private Integer visiable;
 
     /**
      * URL
      */
+    @Column(name="URL")
     private String url;
 
     /**
      * 图片
      */
+    @Column(name="IMAGE")
     private String image;
 
     /**
      * 排序
      */
+    @Column(name="RANK")
     private Integer rank;
 
     /**
      * 描述
      */
+    @Column(name="DESCRIBE")
     private String describe;
 
 

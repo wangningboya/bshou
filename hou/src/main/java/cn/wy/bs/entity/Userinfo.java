@@ -1,5 +1,8 @@
 package cn.wy.bs.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Table;
+
 /**
  * 
  * 
@@ -7,41 +10,49 @@ package cn.wy.bs.entity;
  * 
  * @date 2018-09-28
  */
+@Table(name="t_userinfo")
 public class Userinfo {
 
     /**
      * 用户ID
      */
+    @Column(name="USERID")
     private String userId;
 
     /**
      * 姓名
      */
+    @Column(name="USERNAME")
     private String userName;
 
     /**
      * 等级
      */
+    @Column(name="RESLEVEL")
     private String resLevel;
 
     /**
      * 名称
      */
+    @Column(name="RESNAME")
     private String resName;
 
     /**
      * 部门ID
      */
+    @Column(name="DEPID")
     private String depId;
 
     /**
      * 邮箱
      */
+    @Column(name="EMAIL")
     private String email;
 
     /**
      * 联系方式
      */
+    @Column(name="PHONE")
     private String phone;
 
     public String getUserId() {

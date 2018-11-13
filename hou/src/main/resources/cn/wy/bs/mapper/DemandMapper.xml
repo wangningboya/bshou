@@ -19,7 +19,7 @@
 
     <!--<select id="getDemandNum" parameterType="String" resultType="int">-->
         <!--SELECT count(*)-->
-        <!--FROM t_demand d,t_project p-->
+        <!--FROM demand d,project p-->
         <!--WHERE d.ISDELETE = 0 AND p.ISDELETE = 0-->
         <!--AND d.PROJECTID = p.ID-->
         <!--<if test="userName!=null and userName!=''">-->
@@ -73,35 +73,6 @@
         </if>
         ORDER BY d.CREATENAME DESC
     </select>
-
-    <insert id="add" parameterType="cn.wy.bs.entity.Demand">
-        INSERT INTO t_demand (
-        id,
-        CREATETIME,
-        CREATENAME,
-        ISDELETE,
-        DEMANDNO,
-        DEMANDNAME,
-        DEMANDDES,
-        DEMANDTYPE,
-        PROJECTID,
-        ACCID,
-        STATE
-        )
-        VALUES (
-        REPLACE(UUID(),'-',''),
-        #{createTime},
-        #{createName},
-        0,
-        #{demandNo},
-        #{demandName},
-        #{demandDes},
-        #{demandType},
-        #{projectId},
-        #{accId},
-        0
-        )
-    </insert>
 
     <update id="updateById" parameterType="cn.wy.bs.entity.Demand">
         UPDATE t_demand

@@ -1,5 +1,8 @@
 package cn.wy.bs.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Table;
+
 /**
  * 
  * 
@@ -7,11 +10,13 @@ package cn.wy.bs.entity;
  * 
  * @date 2018-09-28
  */
+@Table(name="t_resources")
 public class Resources {
 
     /**
      * 资源名称
      */
+    @Column(name="RESNAME")
     private String resName;
 
     public String getResName() {

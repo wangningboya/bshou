@@ -1,5 +1,8 @@
 package cn.wy.bs.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Table;
+
 /**
  * 
  * 
@@ -7,16 +10,19 @@ package cn.wy.bs.entity;
  * 
  * @date 2018-09-28
  */
+@Table(name="t_department")
 public class Department {
 
     /**
      * 部门名称
      */
+    @Column(name="DEPNAME")
     private String depName;
 
     /**
      * 父ID
      */
+    @Column(name="PARENTID")
     private String parentId;
 
     public String getDepName() {

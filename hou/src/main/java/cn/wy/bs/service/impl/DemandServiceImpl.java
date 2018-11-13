@@ -1,7 +1,9 @@
 package cn.wy.bs.service.impl;
 
 import cn.wy.bs.dto.DemandDto;
+import cn.wy.bs.dto.DemandLogDto;
 import cn.wy.bs.entity.Demand;
+import cn.wy.bs.mapper.DemandLogMapper;
 import cn.wy.bs.mapper.DemandMapper;
 import cn.wy.bs.service.DemandService;
 import com.github.pagehelper.PageHelper;
@@ -11,13 +13,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 
 @Service
 @Transactional
 public class DemandServiceImpl implements DemandService {
 
 	@Resource
-	DemandMapper demandMapper;
+	private  DemandMapper demandMapper;
+
+	@Resource
+	private DemandLogMapper demandLogMapper;
 
 	@Override
 	public DemandDto getDemand(HashMap<String, Object> map) {
@@ -52,7 +58,7 @@ public class DemandServiceImpl implements DemandService {
 
 	@Override
 	public void saveDemand(Demand demand) {
-		demandMapper.add(demand);
+		demandMapper.insertSelective(demand);
 	}
 
 	@Override
@@ -60,5 +66,8 @@ public class DemandServiceImpl implements DemandService {
 		demandMapper.updateById(demand);
 	}
 
-
+	@Override
+	public List<DemandLogDto> getDemandLogById(HashMap<String, Object> map) {
+		return demandLogMapper.getByDemandId(map);
+	}
 }

@@ -2,6 +2,9 @@ package cn.wy.bs.entity;
 
 import cn.wy.bs.utils.BaseModal;
 
+import javax.persistence.Column;
+import javax.persistence.Table;
+
 /**
  * 
  * 
@@ -9,36 +12,43 @@ import cn.wy.bs.utils.BaseModal;
  * 
  * @date 2018-09-28
  */
+@Table(name="t_user")
 public class User extends BaseModal {
 
     /**
      * 账号
      */
+    @Column(name="USERNAME")
     private String userName;
 
     /**
      * 姓名
      */
+    @Column(name="REALNAME")
     private String realName;
 
     /**
      * 密码
      */
+    @Column(name="PASSWORD")
     private String password;
 
     /**
      * 联系方式
      */
+    @Column(name="PHONE")
     private String phone;
 
     /**
      * 角色ID
      */
+    @Column(name="ROLEID")
     private String roleId;
 
     /**
      * 邮箱
      */
+    @Column(name="EMAIL")
     private String email;
 
     public String getUserName() {

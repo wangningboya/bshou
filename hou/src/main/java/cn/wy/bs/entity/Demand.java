@@ -2,6 +2,8 @@ package cn.wy.bs.entity;
 
 import cn.wy.bs.utils.BaseModal;
 
+import javax.persistence.Column;
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
@@ -11,81 +13,97 @@ import java.util.Date;
  * 
  * @date 2018-10-11
  */
+@Table(name="t_demand")
 public class Demand extends BaseModal {
 
     /**
      * 需求编号
      */
+    @Column(name="DEMANDNO")
     private String demandNo;
 
     /**
      * 需求名称
      */
+    @Column(name="DEMANDNAME")
     private String demandName;
 
     /**
      * 需求描述
      */
+    @Column(name="DEMANDDES")
     private String demandDes;
 
     /**
      * 需求类型（0需求/1BUG）
      */
+    @Column(name="DEMANDTYPE")
     private Integer demandType;
 
     /**
      * 项目ID
      */
+    @Column(name="PROJECTID")
     private String projectId;
 
     /**
      * 验收人员ID
      */
+    @Column(name="ACCID")
     private String accId;
 
     /**
      * 开发人员
      */
+    @Column(name="DEVID")
     private String devId;
 
     /**
      * 审核理由
      */
+    @Column(name="REVIEWDES")
     private String reviewDes;
 
     /**
      * 预期时间
      */
+    @Column(name="EXPTIME")
     private Integer expTime;
 
     /**
      * 实际时间
      */
+    @Column(name="ACTTIME")
     private Integer actTime;
 
     /**
      *  交付时间
      */
+    @Column(name="DELIVERYTIME")
     private Date deliveryTime;
 
     /**
      * 状态（0提出需求/1审核未通过/2预估时间/3开发开始/4开发暂停/5开发结束/6开发关闭/7验收通过/8验收未通过）
      */
+    @Column(name="STATE")
     private Integer state;
 
     /**
      * 开发结束时间
      */
+    @Column(name="DEVELOPTIME")
     private Date developTime;
 
     /**
      * 关闭时间
      */
+    @Column(name="CLOSETIME")
     private Date closeTime;
 
     /**
      * 关闭原因
      */
+    @Column(name="CLOSEREASON")
     private String closeReason;
 
     public String getDemandNo() {

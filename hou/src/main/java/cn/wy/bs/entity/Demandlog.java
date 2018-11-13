@@ -3,28 +3,35 @@ package cn.wy.bs.entity;
 import cn.wy.bs.utils.BaseModal;
 import com.sun.xml.internal.bind.v2.model.core.ID;
 
+import javax.persistence.Column;
+import javax.persistence.Table;
 import java.util.Date;
 
-public class Demandlog  extends BaseModal{
+@Table(name="t_demandlog")
+public class DemandLog extends BaseModal{
 
 	/**
 	 *需求ID
 	 */
+	@Column(name="DEMANDID")
 	String demandId;
 
 	/**
 	 * 操作人员ID
 	 */
-	String devId;
+	@Column(name="OPEID")
+	String opeId;
 
 	/**
 	 * 操作时间
 	 */
+	@Column(name="OPETIME")
 	Date opeTime;
 
 	/**
 	 *需求状态
 	 */
+	@Column(name="DEMANDSTATE")
 	Integer demandState;
 
 	public String getDemandId() {
@@ -35,12 +42,12 @@ public class Demandlog  extends BaseModal{
 		this.demandId = demandId;
 	}
 
-	public String getDevId() {
-		return devId;
+	public String getOpeId() {
+		return opeId;
 	}
 
-	public void setDevId(String devId) {
-		this.devId = devId;
+	public void setOpeId(String opeId) {
+		this.opeId = opeId;
 	}
 
 	public Date getOpeTime() {
