@@ -107,10 +107,9 @@ public class DemandController {
 
 	@RequestMapping(value = "/addDemand")
 	public ResponseData addDemand(
-			HttpServletRequest request,
+			HttpSession session,
 			@RequestParam HashMap<String, Object> map
 	) {
-		HttpSession session = request.getSession();
 		ResponseData responseData = new ResponseData();
 		Demand demand = new Demand();
 		demand.setCreateTime(new Date());

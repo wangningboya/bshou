@@ -17,22 +17,22 @@
         ORDER BY d.CREATETIME DESC
     </select>
 
-    <select id="getDemandNum" parameterType="String" resultType="int">
-        SELECT count(*)
-        FROM t_demand d,t_project p
-        WHERE d.ISDELETE = 0 AND p.ISDELETE = 0
-        AND d.PROJECTID = p.ID
-        <if test="userName!=null and userName!=''">
-            AND (d.CREATENAME = #{userName}
-            OR d.DEVID = #{userName})
-        </if>
-        <if test="state!=null and state!=''">
-            AND d.STATE = #{state}
-        </if>
-        <if test="demandName!=null and demandName!=''">
-            AND d.DEMANDNAME LIKE concat('%',#{demandName},'%')
-        </if>
-    </select>
+    <!--<select id="getDemandNum" parameterType="String" resultType="int">-->
+        <!--SELECT count(*)-->
+        <!--FROM t_demand d,t_project p-->
+        <!--WHERE d.ISDELETE = 0 AND p.ISDELETE = 0-->
+        <!--AND d.PROJECTID = p.ID-->
+        <!--<if test="userName!=null and userName!=''">-->
+            <!--AND (d.CREATENAME = #{userName}-->
+            <!--OR d.DEVID = #{userName})-->
+        <!--</if>-->
+        <!--<if test="state!=null and state!=''">-->
+            <!--AND d.STATE = #{state}-->
+        <!--</if>-->
+        <!--<if test="demandName!=null and demandName!=''">-->
+            <!--AND d.DEMANDNAME LIKE concat('%',#{demandName},'%')-->
+        <!--</if>-->
+    <!--</select>-->
 
     <select id="getDemandList" parameterType="cn.wy.bs.utils.Page" resultType="cn.wy.bs.dto.DemandDto">
         SELECT d.*,p.PROJECTNAME,p.PROJECTNO,u.REALNAME 'PMName'

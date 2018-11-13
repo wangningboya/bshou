@@ -1,6 +1,6 @@
 package cn.wy.bs.entity;
 
-import cn.wy.bs.utils.Base;
+import cn.wy.bs.utils.BaseModal;
 
 import java.util.Date;
 
@@ -11,7 +11,7 @@ import java.util.Date;
  * 
  * @date 2018-10-11
  */
-public class Demand extends Base{
+public class Demand extends BaseModal {
 
     /**
      * 需求编号

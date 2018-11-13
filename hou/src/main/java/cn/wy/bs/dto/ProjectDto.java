@@ -1,8 +1,8 @@
 package cn.wy.bs.dto;
 
-import cn.wy.bs.utils.Base;
+import cn.wy.bs.utils.BaseModal;
 
-public class ProjectDto extends Base {
+public class ProjectDto extends BaseModal {
 
     /**
      * 项目ID

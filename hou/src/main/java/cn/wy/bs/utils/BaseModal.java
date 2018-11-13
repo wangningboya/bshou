@@ -2,7 +2,7 @@ package cn.wy.bs.utils;
 
 import java.util.Date;
 
-public class Base {
+public class BaseModal {
     /**
      * ID
      */
@@ -82,15 +82,4 @@ public class Base {
         this.isDelete = isDelete;
     }
 
-    @Override
-    public String toString() {
-        return "Base{" +
-                "ID='" + ID + '\'' +
-                ", createTime=" + createTime +
-                ", createName='" + createName + '\'' +
-                ", modifiTime=" + modifiTime +
-                ", modifiName='" + modifiName + '\'' +
-                ", isDelete=" + isDelete +
-                '}';
-    }
 }

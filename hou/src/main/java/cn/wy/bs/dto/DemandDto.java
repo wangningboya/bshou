@@ -1,9 +1,6 @@
 package cn.wy.bs.dto;
 
 import cn.wy.bs.entity.Demand;
-import cn.wy.bs.utils.Base;
-
-import java.util.Date;
 
 public class DemandDto extends Demand{
 

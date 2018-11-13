@@ -1,6 +1,6 @@
 package cn.wy.bs.entity;
 
-import cn.wy.bs.utils.Base;
+import cn.wy.bs.utils.BaseModal;
 
 /**
  * 
@@ -9,7 +9,7 @@ import cn.wy.bs.utils.Base;
  * 
  * @date 2018-09-28
  */
-public class Auth extends Base{
+public class Auth extends BaseModal {
 
 
     /**

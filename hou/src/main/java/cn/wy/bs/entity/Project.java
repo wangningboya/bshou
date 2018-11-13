@@ -1,8 +1,8 @@
 package cn.wy.bs.entity;
 
-import cn.wy.bs.utils.Base;
+import cn.wy.bs.utils.BaseModal;
 
-public class Project extends Base{
+public class Project extends BaseModal {
 
     /**
      * 项目编号
