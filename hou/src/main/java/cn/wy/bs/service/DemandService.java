@@ -3,6 +3,7 @@ package cn.wy.bs.service;
 import cn.wy.bs.dto.DemandDto;
 import cn.wy.bs.dto.DemandLogDto;
 import cn.wy.bs.entity.Demand;
+import cn.wy.bs.entity.DemandLog;
 import com.github.pagehelper.PageInfo;
 
 import java.util.HashMap;
@@ -34,5 +35,6 @@ public interface DemandService {
 	//获取需求日志
 	List<DemandLogDto> getDemandLogById(HashMap<String, Object> map);
 
-
+	//新增需求日志
+	int addDemandLog(DemandLog demandLog);
 }

@@ -19,4 +19,7 @@ public interface UserService {
 
     // 获取审核人员
     List<User> getUserByRoleId(HashMap<String, Object> map);
+
+    //获取所有人员
+    List<User> getUsers();
 }

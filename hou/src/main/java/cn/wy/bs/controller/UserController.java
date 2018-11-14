@@ -61,4 +61,13 @@ public class UserController {
         responseData.setRspCode("000000");
         return responseData;
     }
+
+    @RequestMapping(value = "/getUsers")
+    public ResponseData getUsers(
+    ){
+        ResponseData responseData = new ResponseData();
+        List<User> userList=userService.getUsers();
+        responseData.setData(userList);
+        return responseData;
+    }
 }

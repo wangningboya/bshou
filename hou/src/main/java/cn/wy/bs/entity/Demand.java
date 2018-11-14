@@ -83,7 +83,7 @@ public class Demand extends BaseModal {
     private Date deliveryTime;
 
     /**
-     * 状态（0提出需求/1审核未通过/2预估时间/3开发开始/4开发暂停/5开发结束/6开发关闭/7验收通过/8验收未通过）
+     * 状态状态（0提出需求/1审核通过/2审核未通过/3预估时间/4开发开始/5开发暂停/6开发结束/7开发关闭/8验收通过/9验收未通过）
      */
     @Column(name="STATE")
     private Integer state;

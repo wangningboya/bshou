@@ -1,6 +1,7 @@
 package cn.wy.bs.controller;
 
 import cn.wy.bs.dto.DemandDto;
+import cn.wy.bs.dto.DemandLogDto;
 import cn.wy.bs.entity.Demand;
 import cn.wy.bs.entity.DemandLog;
 import cn.wy.bs.service.DemandService;
@@ -116,9 +117,10 @@ public class DemandController {
 		Demand demand = new Demand();
 		DemandLog demandLog = new DemandLog();
 
+		String uuid = BaseUtil.getUUID();
 		demand.setCreateTime(new Date());
 		demand.setCreateName(session.getAttribute("userName").toString());
-		demand.setID(BaseUtil.getUUID());
+		demand.setID(uuid);
 		demand.setDemandName(map.get("demandName").toString());
 		demand.setDemandDes(map.get("demandDes").toString());
 		demand.setDemandNo(map.get("demandNo").toString());
@@ -128,17 +130,24 @@ public class DemandController {
 		demand.setIsDelete(0);
 		demand.setState(0);
 
+		demandLog.setID(BaseUtil.getUUID());
 		demandLog.setOpeId(session.getAttribute("userName").toString());
 		demandLog.setCreateName(session.getAttribute("userName").toString());
 		demandLog.setCreateTime(new Date());
+		demandLog.setOpeId(session.getAttribute("userName").toString());
+		demandLog.setOpeTime(new Date());
+		demandLog.setDemandId(uuid);
+		demandLog.setDemandState(0);
+		demandLog.setIsDelete(0);
+		demandService.addDemandLog(demandLog);
 		try {
 			demandService.saveDemand(demand);
 			responseData.setRspMsg("操作成功");
 			responseData.setRspCode("000000");
 		} catch (Exception e) {
-			throw e;
-//			responseData.setRspMsg(e.toString());
-//			responseData.setRspCode("999999");
+//			throw e;
+			responseData.setRspMsg(e.toString());
+			responseData.setRspCode("999999");
 		}
 		return responseData;
 	}
@@ -171,12 +180,64 @@ public class DemandController {
 		return responseData;
 	}
 
+	@RequestMapping(value = "/addDemandLog")
+	public ResponseData addDemandLog(
+			HttpSession session,
+			@RequestParam HashMap<String, Object> map
+	) {
+		ResponseData responseData = new ResponseData();
+		DemandLog demandLog = new DemandLog();
+		Demand demand = new Demand();
+
+		demandLog.setID(BaseUtil.getUUID());
+		demandLog.setOpeTime(new Date());
+		demandLog.setOpeId(session.getAttribute("userName").toString());
+		demandLog.setDemandState(Integer.parseInt(map.get("state").toString()));
+		demandLog.setDemandId(map.get("id").toString());
+		demandLog.setIsDelete(0);
+		demandLog.setCreateTime(new Date());
+		demandLog.setCreateName(session.getAttribute("userName").toString());
+
+		demand.setID(map.get("id").toString());
+		demand.setState(Integer.parseInt(map.get("state").toString()));
+		demand.setModifiTime(new Date());
+		demand.setModifiName(session.getAttribute("userName").toString());
+		if (map.containsKey("expTime")) {
+			if (map.get("expTime").toString() != null && map.get("expTime").toString() != "") {
+				demand.setExpTime(Integer.parseInt(map.get("expTime").toString()));
+			}
+		}
+		if (map.containsKey("devId")) {
+			if (map.get("devId").toString() != null && map.get("devId").toString() != "") {
+				demand.setDevId(map.get("devId").toString());
+			}
+		}
+		if (map.containsKey("reviewDes")) {
+			if (map.get("reviewDes").toString() != null && map.get("reviewDes").toString() != "") {
+				demand.setReviewDes(map.get("reviewDes").toString());
+			}
+		}
+
+
+		try {
+			demandService.addDemandLog(demandLog);
+			demandService.updateDemand(demand);
+			responseData.setRspMsg("操作成功");
+			responseData.setRspCode("000000");
+		} catch (Exception e) {
+			responseData.setRspMsg(e.toString());
+			responseData.setRspCode("999999");
+		}
+		return responseData;
+	}
+
 	@RequestMapping(value = "/getDemandLogById", method = RequestMethod.GET)
 	public ResponseData getDemandLogById(
 			@RequestParam HashMap<String, Object> map
 	) {
 		ResponseData responseData = new ResponseData();
-
+		List<DemandLogDto> demandLogDtoList=demandService.getDemandLogById(map);
+		responseData.setData(demandLogDtoList);
 		return responseData;
 	}
 }

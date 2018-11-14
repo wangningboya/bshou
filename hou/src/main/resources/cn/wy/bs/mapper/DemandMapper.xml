@@ -74,18 +74,5 @@
         ORDER BY d.CREATENAME DESC
     </select>
 
-    <update id="updateById" parameterType="cn.wy.bs.entity.Demand">
-        UPDATE t_demand
-        SET
-        MODIFITIME=#{modifiTime},
-        MODIFINAME=#{modifiName},
-        DEMANDNO=#{demandNo},
-        DEMANDNAME=#{demandName},
-        DEMANDDES=#{demandDes},
-        DEMANDTYPE=#{demandType},
-        PROJECTID=#{projectId},
-        ACCID=#{accId}
-        WHERE id=#{ID}
-    </update>
 
 </mapper>

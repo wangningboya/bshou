@@ -5,9 +5,10 @@
 <mapper namespace="cn.wy.bs.mapper.DemandLogMapper">
 
     <select id="getByDemandId" parameterType="String" resultType="cn.wy.bs.dto.DemandLogDto">
-        SELECT d.*,t.REALNAME
+        SELECT d.*,t.REALNAME opeName
         FROM t_demandlog d,t_user t
         WHERE d.OPEID=t.USERNAME
+        AND DEMANDID=#{id}
     </select>
 
 </mapper>

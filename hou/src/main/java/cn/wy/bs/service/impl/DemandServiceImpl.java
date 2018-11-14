@@ -3,6 +3,7 @@ package cn.wy.bs.service.impl;
 import cn.wy.bs.dto.DemandDto;
 import cn.wy.bs.dto.DemandLogDto;
 import cn.wy.bs.entity.Demand;
+import cn.wy.bs.entity.DemandLog;
 import cn.wy.bs.mapper.DemandLogMapper;
 import cn.wy.bs.mapper.DemandMapper;
 import cn.wy.bs.service.DemandService;
@@ -63,11 +64,16 @@ public class DemandServiceImpl implements DemandService {
 
 	@Override
 	public void updateDemand(Demand demand) {
-		demandMapper.updateById(demand);
+		demandMapper.updateByPrimaryKeySelective(demand);
 	}
 
 	@Override
 	public List<DemandLogDto> getDemandLogById(HashMap<String, Object> map) {
 		return demandLogMapper.getByDemandId(map);
+	}
+
+	@Override
+	public int addDemandLog(DemandLog demandLog) {
+		return demandLogMapper.insertSelective(demandLog);
 	}
 }

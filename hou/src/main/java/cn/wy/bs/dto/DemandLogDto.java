@@ -5,7 +5,7 @@ import cn.wy.bs.entity.DemandLog;
 public class DemandLogDto extends DemandLog {
 
 	/**
-	 * 开发人员名字
+	 * 操作人员名字
 	 */
 	String opeName;
 

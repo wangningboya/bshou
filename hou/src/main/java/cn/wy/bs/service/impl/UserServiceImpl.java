@@ -37,4 +37,9 @@ public class UserServiceImpl implements UserService {
     public List<User> getUserByRoleId(HashMap<String, Object> map) {
         return userMapper.getUserByRoleId(map);
     }
+
+    @Override
+    public List<User> getUsers() {
+        return userMapper.selectAll();
+    }
 }

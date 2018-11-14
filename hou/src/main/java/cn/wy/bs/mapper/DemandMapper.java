@@ -22,7 +22,5 @@ public interface DemandMapper extends BaseMapper<Demand>{
 
     void add(Demand demand);
 
-	void updateById(Demand demand);
-
 
 }
