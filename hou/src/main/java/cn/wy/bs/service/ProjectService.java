@@ -8,7 +8,9 @@ import java.util.List;
 
 public interface ProjectService {
 
-    // 查询项目信息
-    List<ProjectDto> getProject(HashMap<String, Object> map);
+	/**
+	 * 查询项目信息
+	 */
+	List<ProjectDto> getProject(HashMap<String, Object> map);
 
 }

@@ -46,6 +46,7 @@ public class LoginController {
                 responseData.setRspCode("000000");
                 responseData.setRspMsg("登录成功");
                 break;
+            default:
         }
         return responseData;
     }

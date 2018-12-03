@@ -5,6 +5,10 @@ import cn.wy.bs.utils.BaseModal;
 import javax.persistence.Column;
 import javax.persistence.Table;
 
+/**
+ * @author wy
+ * @date 2018-09-28
+ */
 @Table(name="t_project")
 public class Project extends BaseModal {
 

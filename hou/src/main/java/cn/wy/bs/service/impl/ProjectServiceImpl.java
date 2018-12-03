@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class ProjectServiceImpl implements ProjectService{
 
     @Resource

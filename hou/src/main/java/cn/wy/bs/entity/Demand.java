@@ -7,10 +7,7 @@ import javax.persistence.Table;
 import java.util.Date;
 
 /**
- * 
- * 
  * @author wy
- * 
  * @date 2018-10-11
  */
 @Table(name="t_demand")

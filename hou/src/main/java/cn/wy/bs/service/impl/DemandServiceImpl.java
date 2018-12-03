@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class DemandServiceImpl implements DemandService {
 
 	@Resource
@@ -43,11 +43,6 @@ public class DemandServiceImpl implements DemandService {
 		PageHelper.startPage(pageNum, pageSize);
 		PageInfo<DemandDto> demandDtoPageInfo = new PageInfo<DemandDto>(demandMapper.getDemandListByCreactName(map));
 		return demandDtoPageInfo;
-	}
-
-	@Override
-	public int getDemandNum(HashMap<String, Object> map) {
-		return demandMapper.getDemandNum(map);
 	}
 
 	@Override

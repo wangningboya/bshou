@@ -236,7 +236,7 @@ public class DemandController {
 			@RequestParam HashMap<String, Object> map
 	) {
 		ResponseData responseData = new ResponseData();
-		List<DemandLogDto> demandLogDtoList=demandService.getDemandLogById(map);
+		List<DemandLogDto> demandLogDtoList = demandService.getDemandLogById(map);
 		responseData.setData(demandLogDtoList);
 		return responseData;
 	}

@@ -1,12 +1,15 @@
 package cn.wy.bs.entity;
 
 import cn.wy.bs.utils.BaseModal;
-import com.sun.xml.internal.bind.v2.model.core.ID;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
 import java.util.Date;
 
+/**
+ * @author wy
+ * @date 2018-09-28
+ */
 @Table(name="t_demandlog")
 public class DemandLog extends BaseModal{
 
