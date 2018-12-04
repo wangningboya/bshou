@@ -3,9 +3,9 @@ package cn.wy.bs.service;
 import cn.wy.bs.dto.DemandDto;
 import cn.wy.bs.dto.DemandLogDto;
 import cn.wy.bs.entity.Demand;
-import cn.wy.bs.entity.DemandLog;
 import com.github.pagehelper.PageInfo;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 
@@ -34,12 +34,12 @@ public interface DemandService {
 	/**
 	 * 添加需求
 	 */
-	void saveDemand(Demand demand);
+	void saveDemand(HttpSession session, HashMap<String, Object> map);
 
 	/**
 	 * 修改需求
 	 */
-	void updateDemand(Demand demand);
+	void updateDemand(HttpSession session, HashMap<String, Object> map);
 
 	/**
 	 * 获取需求日志
@@ -49,5 +49,6 @@ public interface DemandService {
 	/**
 	 * 新增需求日志
 	 */
-	int addDemandLog(DemandLog demandLog);
+	void addDemandLog(HttpSession session, HashMap<String, Object> map);
+
 }

@@ -18,20 +18,20 @@
     </select>
 
     <!--<select id="getDemandNum" parameterType="String" resultType="int">-->
-        <!--SELECT count(*)-->
-        <!--FROM demand d,project p-->
-        <!--WHERE d.ISDELETE = 0 AND p.ISDELETE = 0-->
-        <!--AND d.PROJECTID = p.ID-->
-        <!--<if test="userName!=null and userName!=''">-->
-            <!--AND (d.CREATENAME = #{userName}-->
-            <!--OR d.DEVID = #{userName})-->
-        <!--</if>-->
-        <!--<if test="state!=null and state!=''">-->
-            <!--AND d.STATE = #{state}-->
-        <!--</if>-->
-        <!--<if test="demandName!=null and demandName!=''">-->
-            <!--AND d.DEMANDNAME LIKE concat('%',#{demandName},'%')-->
-        <!--</if>-->
+    <!--SELECT count(*)-->
+    <!--FROM demand d,project p-->
+    <!--WHERE d.ISDELETE = 0 AND p.ISDELETE = 0-->
+    <!--AND d.PROJECTID = p.ID-->
+    <!--<if test="userName!=null and userName!=''">-->
+    <!--AND (d.CREATENAME = #{userName}-->
+    <!--OR d.DEVID = #{userName})-->
+    <!--</if>-->
+    <!--<if test="state!=null and state!=''">-->
+    <!--AND d.STATE = #{state}-->
+    <!--</if>-->
+    <!--<if test="demandName!=null and demandName!=''">-->
+    <!--AND d.DEMANDNAME LIKE concat('%',#{demandName},'%')-->
+    <!--</if>-->
     <!--</select>-->
 
     <select id="getDemandList" resultType="cn.wy.bs.dto.DemandDto">

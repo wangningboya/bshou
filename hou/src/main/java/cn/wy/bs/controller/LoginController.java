@@ -19,12 +19,6 @@ public class LoginController {
     @Resource
     private UserService userService;
 
-    @RequestMapping(value = "/test")
-    public String test(){
-        System.out.println("testttttt");
-        return "aaa";
-    }
-
     @RequestMapping(value = "/login" , method = RequestMethod.GET)
     public ResponseData login(
             HttpServletRequest request,

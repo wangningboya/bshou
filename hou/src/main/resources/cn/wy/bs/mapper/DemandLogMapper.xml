@@ -9,6 +9,7 @@
         FROM t_demandlog d,t_user t
         WHERE d.OPEID=t.USERNAME
         AND DEMANDID=#{id}
+        ORDER BY d.CREATETIME
     </select>
 
 </mapper>
