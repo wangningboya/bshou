@@ -48,6 +48,11 @@ public class User extends BaseModal {
     @Column(name="EMAIL")
     private String email;
 
+    /**
+     * 序列化ID
+     */
+    private static final long serialVersionUID = 1L;
+
     public String getUserName() {
         return userName;
     }

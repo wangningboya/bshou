@@ -16,6 +16,11 @@ public class Role {
     @Column(name="ROLENAME")
     private String roleName;
 
+    /**
+     * 序列化ID
+     */
+    private static final long serialVersionUID = 1L;
+
     public String getRoleName() {
         return roleName;
     }

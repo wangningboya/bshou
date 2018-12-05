@@ -2,19 +2,17 @@ package cn.wy.bs.controller;
 
 import cn.wy.bs.dto.DemandDto;
 import cn.wy.bs.dto.DemandLogDto;
-import cn.wy.bs.entity.Demand;
-import cn.wy.bs.entity.DemandLog;
 import cn.wy.bs.service.DemandService;
-import cn.wy.bs.utils.BaseUtil;
 import cn.wy.bs.utils.ResponseData;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -32,6 +30,7 @@ public class DemandController {
 			@RequestParam HashMap<String, Object> map
 	) {
 		ResponseData responseData = new ResponseData();
+		String a;
 		try {
 			PageInfo<DemandDto> demandList = demandService.getDemandList(pageNum, pageSize, map);
 			responseData.setData(demandList);
@@ -57,11 +56,10 @@ public class DemandController {
 			responseData.setData(jsonObject);
 			responseData.setRspCode("000000");
 		} catch (Exception e) {
-			ResponseData responseData1 = new ResponseData();
-			responseData1.setRspCode("999999");
+			responseData.setRspCode("999999");
 			responseData.setRspMsg("查询失败");
 			System.out.println(e);
-			return responseData1;
+			return responseData;
 		}
 		return responseData;
 	}
@@ -167,4 +165,5 @@ public class DemandController {
 		responseData.setData(demandLogDtoList);
 		return responseData;
 	}
+
 }

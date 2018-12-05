@@ -22,6 +22,11 @@ public class Authrole {
     @Column(name="AUTHID")
     private String authId;
 
+    /**
+     * 序列化ID
+     */
+    private static final long serialVersionUID = 1L;
+
     public String getRoleId() {
         return roleId;
     }

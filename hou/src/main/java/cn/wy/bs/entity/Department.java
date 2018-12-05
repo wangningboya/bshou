@@ -22,6 +22,11 @@ public class Department {
     @Column(name="PARENTID")
     private String parentId;
 
+    /**
+     * 序列化ID
+     */
+    private static final long serialVersionUID = 1L;
+
     public String getDepName() {
         return depName;
     }

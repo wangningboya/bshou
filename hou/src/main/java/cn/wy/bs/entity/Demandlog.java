@@ -17,25 +17,30 @@ public class DemandLog extends BaseModal{
 	 *需求ID
 	 */
 	@Column(name="DEMANDID")
-	String demandId;
+	private String demandId;
 
 	/**
 	 * 操作人员ID
 	 */
 	@Column(name="OPEID")
-	String opeId;
+	private String opeId;
 
 	/**
 	 * 操作时间
 	 */
 	@Column(name="OPETIME")
-	Date opeTime;
+	private Date opeTime;
 
 	/**
 	 *需求状态
 	 */
 	@Column(name="DEMANDSTATE")
-	Integer demandState;
+	private Integer demandState;
+
+	/**
+	 * 序列化ID
+	 */
+	private static final long serialVersionUID = 1L;
 
 	public String getDemandId() {
 		return demandId;

@@ -16,6 +16,11 @@ public class Resources {
     @Column(name="RESNAME")
     private String resName;
 
+    /**
+     * 序列化ID
+     */
+    private static final long serialVersionUID = 1L;
+
     public String getResName() {
         return resName;
     }

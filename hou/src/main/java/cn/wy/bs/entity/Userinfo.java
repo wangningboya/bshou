@@ -52,6 +52,11 @@ public class Userinfo {
     @Column(name="PHONE")
     private String phone;
 
+	/**
+	 * 序列化ID
+	 */
+	private static final long serialVersionUID = 1L;
+
     public String getUserId() {
         return userId;
     }

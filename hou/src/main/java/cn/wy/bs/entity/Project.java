@@ -30,6 +30,11 @@ public class Project extends BaseModal {
     @Column(name="PMID")
     private String PMId;
 
+    /**
+     * 序列化ID
+     */
+    private static final long serialVersionUID = 1L;
+
     public String getProjectNo() {
         return projectNo;
     }
@@ -54,13 +59,4 @@ public class Project extends BaseModal {
         this.PMId = PMId;
     }
 
-    @Override
-    public String toString() {
-        super.toString();
-        return "Project{" +
-                "projectNo='" + projectNo + '\'' +
-                ", projectName='" + projectName + '\'' +
-                ", PMId='" + PMId + '\'' +
-                '}';
-    }
 }

@@ -55,6 +55,11 @@ public class Auth extends BaseModal {
     @Column(name="DESCRIBE")
     private String describe;
 
+    /**
+     * 序列化ID
+     */
+    private static final long serialVersionUID = 1L;
+
 
     public String getAuthName() {
         return authName;

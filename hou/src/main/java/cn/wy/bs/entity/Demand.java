@@ -103,6 +103,11 @@ public class Demand extends BaseModal {
     @Column(name="CLOSEREASON")
     private String closeReason;
 
+    /**
+     * 序列化ID
+     */
+    private static final long serialVersionUID = 1L;
+
     public String getDemandNo() {
         return demandNo;
     }

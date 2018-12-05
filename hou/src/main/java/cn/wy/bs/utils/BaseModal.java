@@ -1,9 +1,10 @@
 package cn.wy.bs.utils;
 
 import javax.persistence.Column;
+import java.io.Serializable;
 import java.util.Date;
 
-public class BaseModal {
+public class BaseModal implements Serializable{
     /**
      * ID
      */
