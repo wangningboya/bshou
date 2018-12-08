@@ -156,6 +156,23 @@ public class DemandController {
 		return responseData;
 	}
 
+	@RequestMapping(value = "/review")
+	public ResponseData review(
+			HttpSession session,
+			@RequestParam HashMap<String, Object> map
+	) {
+		ResponseData responseData = new ResponseData();
+		try {
+			demandService.addDemandLog(session, map);
+			responseData.setRspMsg("操作成功");
+			responseData.setRspCode("000000");
+		} catch (Exception e) {
+			responseData.setRspMsg(e.toString());
+			responseData.setRspCode("999999");
+		}
+		return responseData;
+	}
+
 	@RequestMapping(value = "/getDemandLogById", method = RequestMethod.GET)
 	public ResponseData getDemandLogById(
 			@RequestParam HashMap<String, Object> map
