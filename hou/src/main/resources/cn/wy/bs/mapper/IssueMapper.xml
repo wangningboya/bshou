@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wy.bs.mapper.IssueMapper">
+
+    <select id="getIssueList" parameterType="String" resultType="cn.wy.bs.entity.Issue">
+        SELECT *
+        FROM T_ISSUE t
+        WHERE t.ISDELETE = 0
+        <if test="issueName!=null and issueName!=''">
+            AND t.ISSUENAME LIKE concat('%',#{issueName},'%')
+        </if>
+        <if test="state!=null and state!=''">
+            AND t.STATE = #{state}
+        </if>
+        ORDER BY t.CREATETIME
+    </select>
+
+</mapper>

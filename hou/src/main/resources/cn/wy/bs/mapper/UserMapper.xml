@@ -7,22 +7,29 @@
         SELECT count(*)
         FROM t_user
         WHERE isdelete = 0
-        AND userName = #{userName} AND password = #{password}
+          AND userName = #{userName}
+          AND password = #{password}
     </select>
 
     <select id="getByUserName" parameterType="string" resultType="cn.wy.bs.entity.User">
         SELECT *
         FROM t_user
         WHERE isdelete = 0
-        AND userName = #{userName}
+          AND userName = #{userName}
     </select>
 
     <select id="getAuthByRoleId" parameterType="string" resultType="cn.wy.bs.entity.Auth">
         SELECT *
-        FROM t_auth a,t_authrole ar,t_role r
-        WHERE a.ID = ar.AUTHID AND ar.ROLEID = r.ID
-        AND a.VISIABLE = 0 AND a.ISDELETE = 0 AND ar.ISDELETE = 0 AND r.ISDELETE = 0
-        AND r.ID = #{roleId}
+        FROM t_auth a,
+             t_authrole ar,
+             t_role r
+        WHERE a.ID = ar.AUTHID
+          AND ar.ROLEID = r.ID
+          AND a.VISIABLE = 0
+          AND a.ISDELETE = 0
+          AND ar.ISDELETE = 0
+          AND r.ISDELETE = 0
+          AND r.ID = #{roleId}
         ORDER BY a.RANK
     </select>
 
@@ -30,6 +37,24 @@
         SELECT *
         FROM t_user
         WHERE ISDELETE = 0
-        AND ROLEID = #{roleId}
+          AND ROLEID = #{roleId}
+    </select>
+
+
+    <select id="getRoleByUserName" parameterType="String" resultType="cn.wy.bs.entity.Role">
+        SELECT r.*
+        FROM t_role r,
+             t_user u
+        WHERE r.ID = u.ROLEID
+          AND r.ISDELETE = 0
+          AND u.ISDELETE = 0
+          AND u.USERNAME = #{userName}
+    </select>
+
+    <select id="getPermissionsByRoleId" parameterType="String" resultType="String">
+        SELECT rp.PERMISSIONID
+        FROM t_rolepermission rp
+        WHERE rp.ISDELETE = 0
+          AND rp.ROLEID = #{roleId}
     </select>
 </mapper>

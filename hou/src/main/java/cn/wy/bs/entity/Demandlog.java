@@ -10,67 +10,83 @@ import java.util.Date;
  * @author wy
  * @date 2018-09-28
  */
-@Table(name="t_demandlog")
-public class DemandLog extends BaseModal{
+@Table(name = "t_demandlog")
+public class DemandLog extends BaseModal {
 
-	/**
-	 *需求ID
-	 */
-	@Column(name="DEMANDID")
-	private String demandId;
+    /**
+     * 需求ID
+     */
+    @Column(name = "DEMANDID")
+    private String demandId;
 
-	/**
-	 * 操作人员ID
-	 */
-	@Column(name="OPEID")
-	private String opeId;
+    /**
+     * 操作人员ID
+     */
+    @Column(name = "OPEID")
+    private String opeId;
 
-	/**
-	 * 操作时间
-	 */
-	@Column(name="OPETIME")
-	private Date opeTime;
+    /**
+     * 操作时间
+     */
+    @Column(name = "OPETIME")
+    private Date opeTime;
 
-	/**
-	 *需求状态
-	 */
-	@Column(name="DEMANDSTATE")
-	private Integer demandState;
+    /**
+     * 需求状态
+     */
+    @Column(name = "DEMANDSTATE")
+    private Integer demandState;
 
-	/**
-	 * 序列化ID
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     * 需求状态名称
+     */
+    @Column(name = "DEMANDSTATENAME")
+    private String demandStateName;
 
-	public String getDemandId() {
-		return demandId;
-	}
+    /**
+     * 序列化ID
+     */
+    private static final long serialVersionUID = 1L;
 
-	public void setDemandId(String demandId) {
-		this.demandId = demandId;
-	}
+    public String getDemandId() {
+        return demandId;
+    }
 
-	public String getOpeId() {
-		return opeId;
-	}
+    public void setDemandId(String demandId) {
+        this.demandId = demandId;
+    }
 
-	public void setOpeId(String opeId) {
-		this.opeId = opeId;
-	}
+    public String getOpeId() {
+        return opeId;
+    }
 
-	public Date getOpeTime() {
-		return opeTime;
-	}
+    public void setOpeId(String opeId) {
+        this.opeId = opeId;
+    }
 
-	public void setOpeTime(Date opeTime) {
-		this.opeTime = opeTime;
-	}
+    public Date getOpeTime() {
+        return opeTime;
+    }
 
-	public Integer getDemandState() {
-		return demandState;
-	}
+    public void setOpeTime(Date opeTime) {
+        this.opeTime = opeTime;
+    }
 
-	public void setDemandState(Integer demandState) {
-		this.demandState = demandState;
-	}
+    public Integer getDemandState() {
+        return demandState;
+    }
+
+    public void setDemandState(Integer demandState) {
+        this.demandState = demandState;
+    }
+
+    public String getDemandStateName() {
+        return demandStateName;
+    }
+
+    public void setDemandStateName(String demandStateName) {
+        this.demandStateName = demandStateName;
+    }
 }
+
+

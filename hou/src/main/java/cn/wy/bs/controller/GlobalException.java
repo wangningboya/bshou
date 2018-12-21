@@ -17,9 +17,9 @@ public class GlobalException {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("code", 1001);
 		map.put("mag", e.getMessage());
-		System.out.println("111");
+		System.out.println("bug");
 		System.out.println(e.getMessage());
-		System.out.println("111");
+		System.out.println("bug");
 		//发生异常进行日志记录，写入数据库或者其他处理，此处省略
 		return map;
 	}

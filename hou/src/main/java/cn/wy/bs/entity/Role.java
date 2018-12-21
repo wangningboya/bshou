@@ -1,5 +1,7 @@
 package cn.wy.bs.entity;
 
+import cn.wy.bs.utils.BaseModal;
+
 import javax.persistence.Column;
 import javax.persistence.Table;
 
@@ -8,7 +10,7 @@ import javax.persistence.Table;
  * @date 2018-09-28
  */
 @Table(name="t_role")
-public class Role {
+public class Role extends BaseModal {
 
     /**
      * 角色名
