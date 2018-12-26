@@ -38,6 +38,12 @@ public class Demand extends BaseModal {
     private Integer demandType;
 
     /**
+     * 问题ID
+     */
+    @Column(name="ISSUEID")
+    private String issueId;
+
+    /**
      * 项目ID
      */
     @Column(name="PROJECTID")
@@ -138,6 +144,14 @@ public class Demand extends BaseModal {
 
     public void setDemandType(Integer demandType) {
         this.demandType = demandType;
+    }
+
+    public String getIssueId() {
+        return issueId;
+    }
+
+    public void setIssueId(String issueId) {
+        this.issueId = issueId;
     }
 
     public String getProjectId() {

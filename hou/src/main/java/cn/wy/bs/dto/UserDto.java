@@ -5,8 +5,8 @@ import cn.wy.bs.entity.User;
 import java.util.List;
 
 /**
- * @author kaiqian
- * @CreateDate 2017/12/4
+ * @author wy
+ * @CreateDate 2018/12/21
  */
 public class UserDto extends User {
 

@@ -10,4 +10,6 @@ import java.util.List;
 public interface ProjectMapper extends BaseMapper<Project> {
 
     List<ProjectDto> getProject(HashMap<String, Object> map);
+
+    List<ProjectDto> getProjectList(HashMap<String, Object> map);
 }

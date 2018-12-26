@@ -18,5 +18,6 @@ public interface DemandMapper extends BaseMapper<Demand>{
 
     void add(Demand demand);
 
+    List<Demand> getDemandListByIssueId(String issueId);
 
 }

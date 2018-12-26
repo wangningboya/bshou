@@ -1,6 +1,7 @@
 package cn.wy.bs.service;
 
 
+import cn.wy.bs.dto.IssueDto;
 import cn.wy.bs.entity.Issue;
 import com.github.pagehelper.PageInfo;
 
@@ -30,5 +31,5 @@ public interface IssueService {
      * @param map
      * @return
      */
-    Issue getIssue(HashMap<String, Object> map);
+    IssueDto getIssue(HashMap<String, Object> map);
 }

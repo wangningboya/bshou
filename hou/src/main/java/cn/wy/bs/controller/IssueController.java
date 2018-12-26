@@ -1,5 +1,6 @@
 package cn.wy.bs.controller;
 
+import cn.wy.bs.dto.IssueDto;
 import cn.wy.bs.dto.UserDto;
 import cn.wy.bs.entity.Issue;
 import cn.wy.bs.service.IssueService;
@@ -56,7 +57,7 @@ public class IssueController {
     }
 
     /**
-     * 获取单个问题
+     * 获取单个问题信息
      */
     @RequestMapping("/getIssue")
     public ResponseData getIssue(
@@ -66,8 +67,8 @@ public class IssueController {
         ResponseData responseData = new ResponseData();
         HashMap<String, Object> ret = new HashMap<String, Object>();
         try {
-            Issue issue = issueService.getIssue(map);
-            ret.put("issue", issue);
+            IssueDto issueDto = issueService.getIssue(map);
+            ret.put("issue", issueDto);
             ret.put("user", session.getAttribute("user"));
             responseData.setData(ret);
             responseData.setRspMsg("查询成功");

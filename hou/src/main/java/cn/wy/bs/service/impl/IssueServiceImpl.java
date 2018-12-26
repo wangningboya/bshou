@@ -1,7 +1,10 @@
 package cn.wy.bs.service.impl;
 
+import cn.wy.bs.dto.IssueDto;
 import cn.wy.bs.entity.Issue;
+import cn.wy.bs.mapper.DemandMapper;
 import cn.wy.bs.mapper.IssueMapper;
+import cn.wy.bs.service.DemandService;
 import cn.wy.bs.service.IssueService;
 import cn.wy.bs.utils.BaseUtil;
 import com.github.pagehelper.PageHelper;
@@ -24,6 +27,9 @@ public class IssueServiceImpl implements IssueService {
 
     @Resource
     private IssueMapper issueMapper;
+
+    @Resource
+    private DemandMapper demandMapper;
 
     /**
      * 获取问题信息
@@ -64,7 +70,10 @@ public class IssueServiceImpl implements IssueService {
      * @return
      */
     @Override
-    public Issue getIssue(HashMap<String, Object> map) {
-        return issueMapper.selectByPrimaryKey(map.get("id").toString());
+    public IssueDto getIssue(HashMap<String, Object> map) {
+        IssueDto issueDto = new IssueDto();
+        issueDto = issueMapper.getByIssueId(map.get("id").toString());
+        issueDto.setDemands(demandMapper.getDemandListByIssueId(map.get("id").toString()));
+        return issueDto;
     }
 }
