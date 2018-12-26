@@ -56,6 +56,12 @@ public class Project extends BaseModal {
     private Date setUpDate;
 
     /**
+     * 项目描述
+     */
+    @Column(name = "PROJECTDES")
+    private String projectDes;
+
+    /**
      * 序列化ID
      */
     private static final long serialVersionUID = 1L;
@@ -114,5 +120,13 @@ public class Project extends BaseModal {
 
     public void setSetUpDate(Date setUpDate) {
         this.setUpDate = setUpDate;
+    }
+
+    public String getProjectDes() {
+        return projectDes;
+    }
+
+    public void setProjectDes(String projectDes) {
+        this.projectDes = projectDes;
     }
 }

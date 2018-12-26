@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class ProjectController {
         return responseData;
     }
 
-    @RequestMapping(value = "/getProjectList",method = RequestMethod.GET)
+    @RequestMapping(value = "/getProjectList", method = RequestMethod.GET)
     public ResponseData getProjectList(
             HttpSession session,
             @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
@@ -46,10 +47,20 @@ public class ProjectController {
         ResponseData responseData = new ResponseData();
         HashMap<String, Object> ret = new HashMap<String, Object>();
         PageInfo<ProjectDto> projectDtoPageInfo = projectService.getProjectList(pageNum, pageSize, map);
-        ret.put("projectList",projectDtoPageInfo);
-        ret.put("user",session.getAttribute("user"));
+        ret.put("projectList", projectDtoPageInfo);
+        ret.put("user", session.getAttribute("user"));
         responseData.setData(ret);
         responseData.setRspCode("000000");
+        return responseData;
+    }
+
+    @RequestMapping(value = "/saveProject", method = RequestMethod.GET)
+    public ResponseData saveProject(
+            HttpSession session,
+            @RequestParam HashMap<String, Object> map
+    ) throws ParseException {
+        projectService.saveProject(session, map);
+        ResponseData responseData = null;
         return responseData;
     }
 
