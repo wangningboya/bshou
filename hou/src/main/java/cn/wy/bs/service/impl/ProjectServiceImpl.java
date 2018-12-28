@@ -39,30 +39,25 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public void saveProject(HttpSession session, HashMap<String, Object> map) throws ParseException {
         Project project = new Project();
+
+        project.setProjectName(map.get("projectName").toString());
+        project.setState(Integer.parseInt(map.get("state").toString()));
+        project.setSetUpDate(BaseUtil.stringToDate(map.get("setUpDate").toString()));
+        project.setProjectAmount(map.get("projectAmount").toString());
+        project.setProjectSales(map.get("projectSales").toString());
+        project.setProjectNo(map.get("projectNo").toString());
+        project.setProjectDes(map.get("projectDes").toString());
+        project.setPMId(map.get("PMId").toString());
+
         if (map.get("projectId") != null) {
             project.setID(map.get("projectId").toString());
             project.setModifiName(session.getAttribute("userName").toString());
             project.setModifiTime(new Date());
-            project.setProjectName(map.get("projectName").toString());
-            project.setState(Integer.parseInt(map.get("state").toString()));
-            project.setSetUpDate(BaseUtil.stringToDate(map.get("setUpDate").toString()));
-            project.setProjectAmount(map.get("projectAmount").toString());
-            project.setProjectSales(map.get("projectSales").toString());
-            project.setProjectNo(map.get("projectNo").toString());
-            project.setProjectDes(map.get("projectDes").toString());
         } else {
             project.setID(BaseUtil.getUUID());
             project.setCreateName(session.getAttribute("userName").toString());
             project.setCreateTime(new Date());
             project.setIsDelete(0);
-            project.setProjectName(map.get("projectName").toString());
-            project.setState(Integer.parseInt(map.get("state").toString()));
-            project.setSetUpDate(BaseUtil.stringToDate(map.get("setUpDate").toString()));
-            project.setProjectAmount(map.get("projectAmount").toString());
-            project.setProjectSales(map.get("projectSales").toString());
-            project.setProjectNo(map.get("projectNo").toString());
-            project.setProjectDes(map.get("projectDes").toString());
-
             projectMapper.insert(project);
         }
 

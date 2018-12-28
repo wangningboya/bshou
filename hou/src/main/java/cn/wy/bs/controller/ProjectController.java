@@ -59,9 +59,15 @@ public class ProjectController {
             HttpSession session,
             @RequestParam HashMap<String, Object> map
     ) throws ParseException {
-        projectService.saveProject(session, map);
-        ResponseData responseData = null;
-        return responseData;
+        ResponseData responseData = new ResponseData();
+        try {
+            projectService.saveProject(session, map);
+            responseData.setRspCode("000000");
+            return responseData;
+        } catch (Exception e) {
+            responseData.setRspCode("999999");
+            return responseData;
+        }
     }
 
 
