@@ -96,7 +96,46 @@ public class IssueController {
             responseData.setRspCode("000000");
         } catch (Exception e) {
             responseData.setRspCode("999999");
-            System.out.println(e);
+            return responseData;
+        }
+        return responseData;
+    }
+
+
+    /**
+     * 根据ID删除问题
+     */
+    @RequestMapping("/deleteIssueById")
+    public ResponseData deleteIssueById(
+            HttpSession session,
+            @RequestParam HashMap<String, Object> map
+    ) {
+        ResponseData responseData = new ResponseData();
+        try {
+            issueService.deleteIssueById(session, map);
+            responseData.setRspCode("000000");
+        } catch (Exception e) {
+            responseData.setRspCode("999999");
+            return responseData;
+        }
+        return responseData;
+    }
+
+
+    /**
+     * 根据ID关闭问题
+     */
+    @RequestMapping("/closeIssueById")
+    public ResponseData closeIssueById(
+            HttpSession session,
+            @RequestParam HashMap<String, Object> map
+    ) {
+        ResponseData responseData = new ResponseData();
+        try {
+            issueService.closeIssueById(session, map);
+            responseData.setRspCode("000000");
+        } catch (Exception e) {
+            responseData.setRspCode("999999");
             return responseData;
         }
         return responseData;

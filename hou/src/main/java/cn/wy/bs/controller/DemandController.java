@@ -164,10 +164,6 @@ public class DemandController {
 
     /**
      * 需求审核
-     *
-     * @param session
-     * @param map
-     * @return
      */
     @RequestMapping(value = "/review", method = RequestMethod.GET)
     public ResponseData review(
@@ -188,10 +184,6 @@ public class DemandController {
 
     /**
      * 工时预估
-     *
-     * @param session
-     * @param map
-     * @return
      */
     @RequestMapping(value = "/predict", method = RequestMethod.GET)
     public ResponseData predict(

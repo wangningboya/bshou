@@ -21,6 +21,7 @@ public interface IssueService {
 
     /**
      * 保存问题
+     *
      * @param session
      * @param map
      */
@@ -28,8 +29,25 @@ public interface IssueService {
 
     /**
      * 获取问题信息
+     *
      * @param map
      * @return
      */
     IssueDto getIssue(HashMap<String, Object> map);
+
+    /**
+     * 根据ID删除问题
+     *
+     * @param session
+     * @param map
+     */
+    void deleteIssueById(HttpSession session, HashMap<String, Object> map);
+
+    /**
+     * 根据ID关闭问题
+     *
+     * @param session
+     * @param map
+     */
+    void closeIssueById(HttpSession session, HashMap<String, Object> map);
 }

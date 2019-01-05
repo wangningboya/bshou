@@ -76,4 +76,24 @@ public class IssueServiceImpl implements IssueService {
         issueDto.setDemands(demandMapper.getDemandListByIssueId(map.get("id").toString()));
         return issueDto;
     }
+
+    @Override
+    public void deleteIssueById(HttpSession session, HashMap<String, Object> map) {
+        Issue issue = new Issue();
+        issue.setID(map.get("id").toString());
+        issue.setModifiName(session.getAttribute("userName").toString());
+        issue.setModifiTime(new Date());
+        issue.setIsDelete(1);
+        issueMapper.updateByPrimaryKeySelective(issue);
+    }
+
+    @Override
+    public void closeIssueById(HttpSession session, HashMap<String, Object> map) {
+        Issue issue = new Issue();
+        issue.setID(map.get("id").toString());
+        issue.setModifiName(session.getAttribute("userName").toString());
+        issue.setModifiTime(new Date());
+        issue.setState(2);
+        issueMapper.updateByPrimaryKeySelective(issue);
+    }
 }

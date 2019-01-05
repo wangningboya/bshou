@@ -25,4 +25,9 @@ public interface ProjectService {
 	 * 新增项目
 	 */
 	void saveProject(HttpSession session, HashMap<String, Object> map) throws ParseException;
+
+	/**
+	 * 根据删除项目
+	 */
+	void deleteProjectById(HttpSession session, HashMap<String, Object> map);
 }

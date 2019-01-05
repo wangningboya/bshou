@@ -60,7 +60,15 @@ public class ProjectServiceImpl implements ProjectService {
             project.setIsDelete(0);
             projectMapper.insert(project);
         }
+    }
 
-
+    @Override
+    public void deleteProjectById(HttpSession session, HashMap<String, Object> map) {
+        Project project = new Project();
+        project.setID(map.get("id").toString());
+        project.setModifiName(session.getAttribute("userName").toString());
+        project.setModifiTime(new Date());
+        project.setIsDelete(1);
+        projectMapper.updateByPrimaryKeySelective(project);
     }
 }

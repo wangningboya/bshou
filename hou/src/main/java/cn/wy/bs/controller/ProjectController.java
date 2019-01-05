@@ -70,5 +70,21 @@ public class ProjectController {
         }
     }
 
+    @RequestMapping(value = "/deleteProjectById", method = RequestMethod.GET)
+    public ResponseData deleteProjectById(
+            HttpSession session,
+            @RequestParam HashMap<String, Object> map
+    ) {
+        ResponseData responseData = new ResponseData();
+        try {
+            projectService.deleteProjectById(session, map);
+            responseData.setRspCode("000000");
+            return responseData;
+        } catch (Exception e) {
+            responseData.setRspCode("999999");
+            return responseData;
+        }
+    }
+
 
 }
