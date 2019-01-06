@@ -3,6 +3,7 @@ package cn.wy.bs.controller;
 import cn.wy.bs.dto.IssueDto;
 import cn.wy.bs.dto.UserDto;
 import cn.wy.bs.entity.Issue;
+import cn.wy.bs.service.DemandService;
 import cn.wy.bs.service.IssueService;
 import cn.wy.bs.service.UserService;
 import cn.wy.bs.utils.ResponseData;
@@ -27,6 +28,9 @@ public class IssueController {
 
     @Resource
     private IssueService issueService;
+
+    @Resource
+    private DemandService demandService;
 
     /**
      * 获取问题
@@ -135,6 +139,25 @@ public class IssueController {
             issueService.closeIssueById(session, map);
             responseData.setRspCode("000000");
         } catch (Exception e) {
+            responseData.setRspCode("999999");
+            return responseData;
+        }
+        return responseData;
+    }
+
+    /**
+     * 问题转需求
+     */
+    @RequestMapping("/issueToDemand")
+    public ResponseData issueToDemand(
+            HttpSession session,
+            @RequestParam HashMap<String, Object> map
+    ) {
+        ResponseData responseData = new ResponseData();
+        try{
+            demandService.issueToDemand(session, map);
+            responseData.setRspCode("000000");
+        }catch (Exception e){
             responseData.setRspCode("999999");
             return responseData;
         }

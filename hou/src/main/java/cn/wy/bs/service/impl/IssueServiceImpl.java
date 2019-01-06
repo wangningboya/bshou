@@ -33,6 +33,7 @@ public class IssueServiceImpl implements IssueService {
 
     /**
      * 获取问题信息
+     *
      * @param pageNum
      * @param pageSize
      * @param map
@@ -40,32 +41,43 @@ public class IssueServiceImpl implements IssueService {
      */
     @Override
     public PageInfo<Issue> getIssueList(Integer pageNum, Integer pageSize, HashMap<String, Object> map) {
-        PageHelper.startPage(pageNum,pageSize);
+        PageHelper.startPage(pageNum, pageSize);
         PageInfo<Issue> issuePageInfo = new PageInfo<Issue>(issueMapper.getIssueList(map));
-        return  issuePageInfo;
+        return issuePageInfo;
     }
 
     /**
      * 新增问题
+     *
      * @param session
      * @param map
      */
     @Override
     public void saveIssue(HttpSession session, HashMap<String, Object> map) {
         Issue issue = new Issue();
-        issue.setID(BaseUtil.getUUID());
-        issue.setCreateName(session.getAttribute("userName").toString());
-        issue.setCreateTime(new Date());
-        issue.setIsDelete(0);
-        issue.setState(0);
+
         issue.setIssueName(map.get("issueName").toString());
         issue.setIssueNo(map.get("issueNo").toString());
         issue.setIssueContent(map.get("issueContent").toString());
-        issueMapper.insert(issue);
+        if (map.get("issueId") != null && !"".equals(map.get("issueId").toString())) {
+            issue.setID(map.get("issueId").toString());
+            issue.setModifiName(session.getAttribute("userName").toString());
+            issue.setModifiTime(new Date());
+            issueMapper.updateByPrimaryKeySelective(issue);
+        }else {
+            issue.setID(BaseUtil.getUUID());
+            issue.setCreateName(session.getAttribute("userName").toString());
+            issue.setCreateTime(new Date());
+            issue.setIsDelete(0);
+            issue.setState(0);
+            issueMapper.insert(issue);
+        }
+
     }
 
     /**
      * 获取问题信息
+     *
      * @param map
      * @return
      */

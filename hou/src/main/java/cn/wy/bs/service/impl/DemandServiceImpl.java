@@ -5,8 +5,10 @@ import cn.wy.bs.dto.DemandDto;
 import cn.wy.bs.dto.DemandLogDto;
 import cn.wy.bs.entity.Demand;
 import cn.wy.bs.entity.DemandLog;
+import cn.wy.bs.entity.Issue;
 import cn.wy.bs.mapper.DemandLogMapper;
 import cn.wy.bs.mapper.DemandMapper;
+import cn.wy.bs.mapper.IssueMapper;
 import cn.wy.bs.service.DemandService;
 import cn.wy.bs.utils.BaseUtil;
 import com.github.pagehelper.PageHelper;
@@ -31,6 +33,9 @@ public class DemandServiceImpl implements DemandService {
 
     @Resource
     private DemandLogMapper demandLogMapper;
+
+    @Resource
+    private IssueMapper issueMapper;
 
     @Override
     public DemandDto getDemand(HashMap<String, Object> map) {
@@ -200,6 +205,7 @@ public class DemandServiceImpl implements DemandService {
 
     /**
      * 开发开始
+     *
      * @param session
      * @param map
      */
@@ -218,6 +224,7 @@ public class DemandServiceImpl implements DemandService {
 
     /**
      * 开发暂停
+     *
      * @param session
      * @param map
      */
@@ -237,6 +244,7 @@ public class DemandServiceImpl implements DemandService {
 
     /**
      * 开发结束
+     *
      * @param session
      * @param map
      */
@@ -251,6 +259,39 @@ public class DemandServiceImpl implements DemandService {
 
         demandMapper.updateByPrimaryKeySelective(demand);
         addDemandLogg(session, demand, DemandStateEnum.T07);
+    }
+
+    /**
+     * 问题转需求
+     *
+     * @param session
+     * @param map
+     */
+    @Override
+    public void issueToDemand(HttpSession session, HashMap<String, Object> map) {
+        Demand demand = new Demand();
+        Issue issue = new Issue();
+
+        demand.setCreateTime(new Date());
+        demand.setCreateName(session.getAttribute("userName").toString());
+        demand.setID(BaseUtil.getUUID());
+        demand.setDemandName(map.get("demandName").toString());
+        demand.setDemandDes(map.get("demandDes").toString());
+        demand.setDemandNo(map.get("demandNo").toString());
+        demand.setDemandType(0);
+        demand.setAccId(map.get("accId").toString());
+        demand.setProjectId(map.get("projectId").toString());
+        demand.setIssueId(map.get("issueId").toString());
+        demand.setIsDelete(0);
+        demand.setState(DemandStateEnum.T01.getIndex());
+        demandMapper.insertSelective(demand);
+        addDemandLogg(session, demand, DemandStateEnum.T01);
+
+        issue.setID(map.get("issueId").toString());
+        issue.setState(1);
+        issue.setModifiName(session.getAttribute("userName").toString());
+        issue.setModifiTime(new Date());
+        issueMapper.updateByPrimaryKeySelective(issue);
     }
 
     /**

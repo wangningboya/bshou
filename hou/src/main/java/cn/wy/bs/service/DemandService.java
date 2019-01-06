@@ -76,4 +76,8 @@ public interface DemandService {
      */
     void endDev(HttpSession session, HashMap<String, Object> map);
 
+    /**
+     * 问题转需求
+     */
+    void issueToDemand(HttpSession session, HashMap<String, Object> map);
 }
