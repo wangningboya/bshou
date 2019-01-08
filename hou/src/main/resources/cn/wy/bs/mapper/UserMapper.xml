@@ -57,4 +57,12 @@
         WHERE rp.ISDELETE = 0
           AND rp.ROLEID = #{roleId}
     </select>
+
+
+    <select id="getUserByUserName" parameterType="String" resultType="int">
+        SELECT count(*)
+        FROM t_user u
+        WHERE u.ISDELETE = 0
+          AND u.USERNAME = #{userName}
+    </select>
 </mapper>

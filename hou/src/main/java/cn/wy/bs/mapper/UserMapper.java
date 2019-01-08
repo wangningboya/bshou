@@ -22,4 +22,6 @@ public interface UserMapper extends BaseMapper<User> {
     Role getRoleByUserName(String userName);
 
     List<String> getPermissionsByRoleId(String roleId);
+
+    int getUserByUserName(HashMap<String, Object> map);
 }

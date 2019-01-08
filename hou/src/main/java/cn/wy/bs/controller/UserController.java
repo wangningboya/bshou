@@ -70,4 +70,18 @@ public class UserController {
         responseData.setData(userList);
         return responseData;
     }
+
+    @RequestMapping(value = "/checkUserName")
+    public ResponseData checkUserName(
+            @RequestParam HashMap<String,Object> map
+    ){
+        ResponseData responseData = new ResponseData();
+        int a = userService.getUserByUserName(map);
+        if(a==0){
+            responseData.setRspCode("1");
+        }else {
+            responseData.setRspCode("0");
+        }
+        return responseData;
+    }
 }

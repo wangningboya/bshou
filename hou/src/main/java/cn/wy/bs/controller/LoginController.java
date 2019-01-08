@@ -67,4 +67,23 @@ public class LoginController {
         responseData.setRspMsg("登出成功");
         return responseData;
     }
+
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public ResponseData register(
+            @RequestParam HashMap<String, Object> map
+    ) {
+        ResponseData responseData = new ResponseData();
+        try {
+            userService.register(map);
+            responseData.setData(map.get("userName").toString());
+            responseData.setRspCode("000000");
+            responseData.setRspMsg("注册成功");
+            return responseData;
+        } catch (Exception e) {
+            responseData.setRspCode("999999");
+            responseData.setRspMsg("注册失败");
+            return responseData;
+        }
+
+    }
 }

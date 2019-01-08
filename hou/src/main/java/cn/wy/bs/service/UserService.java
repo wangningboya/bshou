@@ -4,7 +4,9 @@ import cn.wy.bs.dto.UserDto;
 import cn.wy.bs.entity.Auth;
 import cn.wy.bs.entity.Role;
 import cn.wy.bs.entity.User;
+import cn.wy.bs.utils.ResponseData;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 
@@ -44,4 +46,14 @@ public interface UserService {
      * 根据用户名获取角色
      */
     Role getRoleByUserName(String userName);
+
+    /**
+     * 根据用户名获取用户数量
+     */
+    int getUserByUserName(HashMap<String, Object> map);
+
+    /**
+     * 注册
+     */
+    void register(HashMap<String, Object> map);
 }
