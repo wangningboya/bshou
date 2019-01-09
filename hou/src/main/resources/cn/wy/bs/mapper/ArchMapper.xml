@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wy.bs.mapper.ArchMapper">
+
+    <select id="getArchs" resultType="cn.wy.bs.entity.Arch">
+        SELECT a.*
+        FROM t_arch a
+        WHERE a.ISDELETE = 0
+    </select>
+
+</mapper>
