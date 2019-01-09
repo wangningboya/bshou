@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,20 +25,20 @@ public class UserController {
     @RequestMapping(value = "/userQuery")
     public ResponseData findByUserName(
             @RequestParam HashMap<String, Object> map
-    ){
+    ) {
         ResponseData responseData = new ResponseData();
         JSONObject jsonObject = new JSONObject();
         User user = userService.getByUserName(map);
-        jsonObject.put("user",user);
+        jsonObject.put("user", user);
         responseData.setData(jsonObject);
         responseData.setRspCode("000000");
-        return  responseData;
+        return responseData;
     }
 
     @RequestMapping(value = "/getUserAndMenu")
     public ResponseData getUserAndMenu(
             @RequestParam HashMap<String, Object> map
-    ){
+    ) {
         ResponseData responseData = new ResponseData();
         JSONObject jsonObject = new JSONObject();
         User user = userService.getByUserName(map);
@@ -52,7 +53,7 @@ public class UserController {
     @RequestMapping(value = "/getUserByRoleId")
     public ResponseData getUserByRoleId(
             @RequestParam HashMap<String, Object> map
-    ){
+    ) {
         ResponseData responseData = new ResponseData();
         JSONObject jsonObject = new JSONObject();
         List<User> userList = userService.getUserByRoleId(map);
@@ -64,24 +65,43 @@ public class UserController {
 
     @RequestMapping(value = "/getUsers")
     public ResponseData getUsers(
-    ){
+    ) {
         ResponseData responseData = new ResponseData();
-        List<User> userList=userService.getUsers();
+        List<User> userList = userService.getUsers();
         responseData.setData(userList);
         return responseData;
     }
 
     @RequestMapping(value = "/checkUserName")
     public ResponseData checkUserName(
-            @RequestParam HashMap<String,Object> map
-    ){
+            @RequestParam HashMap<String, Object> map
+    ) {
         ResponseData responseData = new ResponseData();
         int a = userService.getUserByUserName(map);
-        if(a==0){
+        if (a == 0) {
             responseData.setRspCode("1");
-        }else {
+        } else {
             responseData.setRspCode("0");
         }
         return responseData;
+    }
+
+
+    @RequestMapping(value = "/editUser")
+    public ResponseData editUser(
+            HttpSession session,
+            @RequestParam HashMap<String, Object> map
+    ) {
+        ResponseData responseData = new ResponseData();
+        try{
+            userService.editUser(session, map);
+            responseData.setRspCode("000000");
+            responseData.setRspMsg("修改成功");
+            return responseData;
+        }catch (Exception e){
+            responseData.setRspCode("999999");
+            responseData.setRspMsg("修改失败");
+            return responseData;
+        }
     }
 }

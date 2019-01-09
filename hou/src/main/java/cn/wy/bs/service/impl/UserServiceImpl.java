@@ -87,4 +87,21 @@ public class UserServiceImpl implements UserService {
         }
         userMapper.insert(user);
     }
+
+    @Override
+    public void editUser(HttpSession session, HashMap<String, Object> map) {
+        User user = new User();
+        user.setModifiName(session.getAttribute("userName").toString());
+        user.setModifiTime(new Date());
+        if (map.containsKey("password")) {
+            if (map.get("password").toString() != "") {
+                user.setPassword(map.get("password").toString());
+            }
+        }
+        user.setID(map.get("id").toString());
+        user.setRealName(map.get("realName").toString());
+        user.setPhone(map.get("phone").toString());
+        user.setEmail(map.get("email").toString());
+        userMapper.updateByPrimaryKeySelective(user);
+    }
 }

@@ -56,4 +56,9 @@ public interface UserService {
      * 注册
      */
     void register(HashMap<String, Object> map);
+
+    /**
+     * 修改个人信息
+     */
+    void editUser(HttpSession session, HashMap<String, Object> map);
 }
