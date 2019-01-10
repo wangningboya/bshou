@@ -142,8 +142,70 @@ public class PeopleController {
             @RequestBody HashMap<String, Object> map
     ) {
         ResponseData responseData = new ResponseData();
-        peopleService.createTeam(session, map);
-        return responseData;
+        try{
+            peopleService.createTeam(session, map);
+            responseData.setRspCode("000000");
+            responseData.setRspMsg("创建成功");
+            return responseData;
+        }catch (Exception e){
+            responseData.setRspCode("999999");
+            responseData.setRspMsg("创建失败");
+            return responseData;
+        }
+    }
+
+    @RequestMapping(value = "/pickup", method = RequestMethod.POST)
+    public ResponseData pickup(
+            HttpSession session,
+            @RequestBody HashMap<String, Object> map
+    ) {
+        ResponseData responseData = new ResponseData();
+        try{
+            peopleService.pickup(session, map);
+            responseData.setRspCode("000000");
+            responseData.setRspMsg("加入成功");
+            return responseData;
+        }catch (Exception e){
+            responseData.setRspCode("999999");
+            responseData.setRspMsg("加入失败");
+            return responseData;
+        }
+    }
+
+    @RequestMapping(value = "/getout", method = RequestMethod.POST)
+    public ResponseData getout(
+            HttpSession session,
+            @RequestBody HashMap<String, Object> map
+    ) {
+        ResponseData responseData = new ResponseData();
+        try{
+            peopleService.getout(session, map);
+            responseData.setRspCode("000000");
+            responseData.setRspMsg("移除成功");
+            return responseData;
+        }catch (Exception e){
+            responseData.setRspCode("999999");
+            responseData.setRspMsg("移除失败");
+            return responseData;
+        }
+    }
+
+    @RequestMapping(value = "/dismiss", method = RequestMethod.POST)
+    public ResponseData dismiss(
+            HttpSession session,
+            @RequestBody HashMap<String, Object> map
+    ) {
+        ResponseData responseData = new ResponseData();
+        try{
+            peopleService.dismiss(session, map);
+            responseData.setRspCode("000000");
+            responseData.setRspMsg("解散成功");
+            return responseData;
+        }catch (Exception e){
+            responseData.setRspCode("999999");
+            responseData.setRspMsg("解散失败");
+            return responseData;
+        }
     }
 
 }

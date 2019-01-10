@@ -30,7 +30,14 @@
         SELECT up.*
         FROM t_userprofile up
         WHERE up.ISDELETE = 0
-          AND up.ID = #{teamId}
+          AND up.ID = #{id}
+    </select>
+
+    <select id="selectByTeamId" parameterType="String" resultType="cn.wy.bs.entity.UserProfile">
+        SELECT up.*
+        FROM t_userprofile up
+        WHERE up.ISDELETE = 0
+          AND up.RESTEAMID = #{id}
     </select>
 
 </mapper>

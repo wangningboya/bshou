@@ -32,5 +32,10 @@ public interface UserProfileMapper extends BaseMapper<UserProfile>{
     /**
      * 根据ID查询
      */
-    UserProfile selectById(HashMap<String, Object> map);
+    UserProfile selectById(String id);
+
+    /**
+     * 根据队伍ID查找
+     */
+    List<UserProfile> selectByTeamId(String id);
 }
