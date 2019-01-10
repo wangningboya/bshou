@@ -5,6 +5,7 @@ import cn.wy.bs.constant.Constant;
 import cn.wy.bs.constant.enums.ResLogTypeEnum;
 import cn.wy.bs.entity.ResourceLog;
 import cn.wy.bs.entity.UserProfile;
+import cn.wy.bs.mapper.ResourceLogMapper;
 import cn.wy.bs.mapper.UserProfileMapper;
 import cn.wy.bs.service.PeopleService;
 import cn.wy.bs.service.ResourceLogService;
@@ -125,4 +126,5 @@ public class PeopleServiceImpl implements PeopleService {
         resourceLog.setLogContent(String.format("由于各种原因，%s_团队被解散了",userProfile.getResName()));
         resourceLogService.create(session, resourceLog);
     }
+
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wy.bs.mapper.ResourceLogMapper">
+
+    <select id="selectByUserProfileId" resultType="cn.wy.bs.entity.ResourceLog">
+        SELECT rl.*
+        FROM t_resourcelog rl
+        WHERE rl.ISDELETE = 0
+          AND rl.USERPROFILEID = #{id}
+        ORDER BY OCCURTIME asc
+    </select>
+
+</mapper>

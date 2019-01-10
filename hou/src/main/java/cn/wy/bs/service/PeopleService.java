@@ -1,7 +1,10 @@
 package cn.wy.bs.service;
 
+import cn.wy.bs.entity.ResourceLog;
+
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author wy
@@ -28,4 +31,5 @@ public interface PeopleService {
      * 解散团队
      */
     void dismiss(HttpSession session, HashMap<String, Object> map);
+
 }

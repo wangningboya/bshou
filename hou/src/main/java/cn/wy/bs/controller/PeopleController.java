@@ -2,9 +2,12 @@ package cn.wy.bs.controller;
 
 import cn.wy.bs.constant.Constant;
 import cn.wy.bs.dto.PeopleDto;
+import cn.wy.bs.entity.ResourceLog;
 import cn.wy.bs.entity.UserProfile;
+import cn.wy.bs.mapper.ResourceLogMapper;
 import cn.wy.bs.mapper.UserProfileMapper;
 import cn.wy.bs.service.PeopleService;
+import cn.wy.bs.service.ResourceLogService;
 import cn.wy.bs.utils.BaseUtil;
 import cn.wy.bs.utils.ResponseData;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +31,9 @@ public class PeopleController {
 
     @Resource
     private PeopleService peopleService;
+
+    @Resource
+    private ResourceLogService resourceLogService;
 
     /**
      * 初始化请求数据
@@ -206,6 +212,22 @@ public class PeopleController {
             responseData.setRspMsg("解散失败");
             return responseData;
         }
+    }
+
+    @Resource
+    private ResourceLogMapper resourceLogMapper;
+
+    @RequestMapping(value = "/resTimeLine",method = RequestMethod.GET)
+    ResponseData resTimeLine(
+            @RequestParam HashMap<String, Object> map
+    ){
+        ResponseData responseData = new ResponseData();
+//        c.andEqualTo(DataBaseFieldDef.ISDELETED, Constant.ISDELETED_FALSE_0);
+//        c.andEqualTo("userProfileId",id);
+//        example.setOrderByClause("occurTime asc");
+        List<ResourceLog> resourceLogs = resourceLogService.selectByUserProfileId(map);
+        responseData.setData(resourceLogs);
+        return responseData;
     }
 
 }

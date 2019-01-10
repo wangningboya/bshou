@@ -5,6 +5,7 @@ import cn.wy.bs.entity.Arch;
 import cn.wy.bs.entity.ResourceLog;
 import cn.wy.bs.utils.BaseMapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -13,4 +14,6 @@ import java.util.List;
  */
 public interface ResourceLogMapper extends BaseMapper<ResourceLog>{
 
+    List<ResourceLog> selectByUserProfileId(HashMap<String, Object> map);
+    
 }

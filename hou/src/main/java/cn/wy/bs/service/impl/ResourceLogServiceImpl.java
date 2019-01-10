@@ -10,7 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author wy
@@ -29,5 +32,12 @@ public class ResourceLogServiceImpl implements ResourceLogService {
         resourceLog.setCreateTime(new Date());
         resourceLog.setCreateName(session.getAttribute("userName").toString());
         resourceLogMapper.insert(resourceLog);
+    }
+
+    @Override
+    public List<ResourceLog> selectByUserProfileId(HashMap<String, Object> map) {
+        List<ResourceLog> resourceLogList = new ArrayList<>();
+        resourceLogList = resourceLogMapper.selectByUserProfileId(map);
+        return resourceLogList;
     }
 }
