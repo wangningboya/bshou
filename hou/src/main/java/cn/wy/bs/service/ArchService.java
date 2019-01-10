@@ -1,5 +1,6 @@
 package cn.wy.bs.service;
 
+import cn.wy.bs.dto.CascaderDto;
 import cn.wy.bs.entity.Arch;
 
 import javax.servlet.http.HttpSession;
@@ -31,4 +32,14 @@ public interface ArchService {
      * 删除架构
      */
     void delete(HttpSession session, HashMap<String, Object> map);
+
+    /**
+     * 查找连级
+     */
+    List<CascaderDto> queryCascader();
+
+    /**
+     * 根据ID查部门名称
+     */
+    String queryDepName(String resDepart);
 }

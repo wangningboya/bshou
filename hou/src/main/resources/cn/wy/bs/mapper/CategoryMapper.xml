@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wy.bs.mapper.CategoryMapper">
+
+    <select id="selectOrg" resultType="cn.wy.bs.entity.Category">
+        SELECT c.*
+        FROM t_category c
+        WHERE c.ISDELETE = 0
+          AND c.LEVEL = "RESOURCE_ORG"
+    </select>
+
+
+    <select id="selectMember" parameterType="String" resultType="cn.wy.bs.entity.Category">
+        SELECT c.*
+        FROM t_category c
+        WHERE c.ISDELETE = 0
+          AND c.LEVEL = #{categoryCode}
+    </select>
+
+</mapper>

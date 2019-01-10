@@ -14,6 +14,12 @@ import java.util.Date;
 public class UserProfile extends BaseModal {
 
     /**
+     * 资源ID
+     */
+    @Column(name="USERID")
+    private String userId;
+
+    /**
      * 资源名称
      */
     @Column(name="RESNAME")
@@ -184,5 +190,13 @@ public class UserProfile extends BaseModal {
 
     public void setSetupDate(Date setupDate) {
         this.setupDate = setupDate;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

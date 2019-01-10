@@ -13,4 +13,6 @@ import java.util.List;
 public interface ArchMapper extends BaseMapper<Arch>{
 
     List<Arch> getArchs();
+
+    List<Arch> selectAlls();
 }

@@ -38,4 +38,14 @@ public interface UserProfileMapper extends BaseMapper<UserProfile>{
      * 根据队伍ID查找
      */
     List<UserProfile> selectByTeamId(String id);
+
+    /**
+     * 根据资源类型超找
+     */
+    List<UserProfile> selectMembersByResType(String categoryCode);
+
+    /**
+     * 根据手机号查找
+     */
+    List<UserProfile> selectByTel(String tel);
 }

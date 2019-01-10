@@ -1,15 +1,19 @@
 package cn.wy.bs.service.impl;
 
 
+import cn.wy.bs.constant.Constant;
+import cn.wy.bs.dto.CascaderDto;
 import cn.wy.bs.entity.Arch;
 import cn.wy.bs.mapper.ArchMapper;
 import cn.wy.bs.service.ArchService;
 import cn.wy.bs.utils.BaseUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -59,4 +63,46 @@ public class ArchServiceImpl implements ArchService {
         arch.setIsDelete(1);
         archMapper.updateByPrimaryKeySelective(arch);
     }
+
+    @Override
+    public List<CascaderDto> queryCascader() {
+        List<CascaderDto> cascaderDtos = new ArrayList<>();
+
+        List<Arch> archProfiles = archMapper.getArchs();
+
+        for (Arch a : archProfiles) {
+
+            CascaderDto c = new CascaderDto();
+            c.setId(a.getID());
+            c.setKey(a.getID());
+            c.setLabel(a.getDepName());
+            c.setValue(a.getID());
+            c.setParentId(a.getParentId());
+
+            cascaderDtos.add(c);
+        }
+
+        return cascaderDtos;
+    }
+
+    @Override
+    public String queryDepName(String resDepart) {
+        String[] departs = resDepart.split(",");
+
+        StringBuilder ret = new StringBuilder();
+
+        int count = 0;
+        for (String d : departs) {
+
+            ret.append(archMapper.selectByPrimaryKey(d).getDepName());
+
+            if (count < departs.length - 1) {
+                ret.append('-');
+            }
+            count++;
+        }
+
+        return ret.toString();
+    }
+
 }

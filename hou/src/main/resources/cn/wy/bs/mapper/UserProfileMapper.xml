@@ -40,4 +40,20 @@
           AND up.RESTEAMID = #{id}
     </select>
 
+
+    <select id="selectMembersByResType" parameterType="String" resultType="cn.wy.bs.entity.UserProfile">
+        SELECT up.*
+        FROM t_userprofile up
+        WHERE up.ISDELETE = 0
+          AND up.RESTYPE = #{categoryCode}
+    </select>
+
+    <select id="selectByTel" parameterType="String" resultType="cn.wy.bs.entity.UserProfile">
+        SELECT up.*
+        FROM t_userprofile up
+        WHERE up.ISDELETE = 0
+          AND up.TELEPHONE = #{tel}
+    </select>
+
+
 </mapper>
