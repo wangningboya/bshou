@@ -6,9 +6,11 @@ import cn.wy.bs.dto.DemandLogDto;
 import cn.wy.bs.entity.Demand;
 import cn.wy.bs.entity.DemandLog;
 import cn.wy.bs.entity.Issue;
+import cn.wy.bs.entity.User;
 import cn.wy.bs.mapper.DemandLogMapper;
 import cn.wy.bs.mapper.DemandMapper;
 import cn.wy.bs.mapper.IssueMapper;
+import cn.wy.bs.mapper.UserMapper;
 import cn.wy.bs.service.DemandService;
 import cn.wy.bs.utils.BaseUtil;
 import com.github.pagehelper.PageHelper;
@@ -37,6 +39,9 @@ public class DemandServiceImpl implements DemandService {
     @Resource
     private IssueMapper issueMapper;
 
+    @Resource
+    private UserMapper userMapper;
+
     @Override
     public DemandDto getDemand(HashMap<String, Object> map) {
         return demandMapper.getDemand(map);
@@ -44,8 +49,13 @@ public class DemandServiceImpl implements DemandService {
 
     @Override
     public PageInfo<DemandDto> getDemandListByDevId(Integer pageNum, Integer pageSize, HashMap<String, Object> map) {
+
+        User user = new User();
+        user = userMapper.selectByUserName(map.get("userName").toString());
+        String devId = user.getID();
+
         PageHelper.startPage(pageNum, pageSize);
-        PageInfo<DemandDto> demandDtoPageInfo = new PageInfo<DemandDto>(demandMapper.getDemandListByDevId(map));
+        PageInfo<DemandDto> demandDtoPageInfo = new PageInfo<DemandDto>(demandMapper.getDemandListByDevId(devId));
         return demandDtoPageInfo;
     }
 

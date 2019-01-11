@@ -81,4 +81,11 @@
           AND u.PHONE = #{tel}
           AND u.ID NOT IN (#{id})
     </select>
+
+    <select id="selectByUserName" parameterType="String" resultType="cn.wy.bs.entity.User">
+        SELECT u.*
+        FROM t_user u
+        WHERE u.ISDELETE = 0
+          AND u.USERNAME = #{userName}
+    </select>
 </mapper>

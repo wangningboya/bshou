@@ -34,4 +34,9 @@ public interface UserMapper extends BaseMapper<User> {
      * 查询除ID外的手机ID
      */
     List<User> selectByTel2(@Param("id")String id, @Param("tel")String tel);
+
+    /**
+     * 根据账号查找
+     */
+    User selectByUserName(String userName);
 }

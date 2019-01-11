@@ -1,13 +1,13 @@
 package cn.wy.bs.service.impl;
 
-import cn.wy.bs.dto.UserDto;
 import cn.wy.bs.entity.Auth;
 import cn.wy.bs.entity.Role;
 import cn.wy.bs.entity.User;
+import cn.wy.bs.entity.UserProfile;
 import cn.wy.bs.mapper.UserMapper;
+import cn.wy.bs.mapper.UserProfileMapper;
 import cn.wy.bs.service.UserService;
 import cn.wy.bs.utils.BaseUtil;
-import cn.wy.bs.utils.ResponseData;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +23,9 @@ public class UserServiceImpl implements UserService {
 
     @Resource
     private UserMapper userMapper;
+
+    @Resource
+    private UserProfileMapper userProfileMapper;
 
     @Override
     public int getByUserNameAndPassword(HashMap<String, Object> map) {
@@ -45,8 +48,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getUsers() {
-        return userMapper.selectAll();
+    public List<UserProfile> getUsers() {
+        return userProfileMapper.getUsers();
     }
 
     @Override

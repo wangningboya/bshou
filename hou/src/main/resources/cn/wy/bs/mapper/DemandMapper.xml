@@ -56,11 +56,9 @@
         SELECT d.*,p.PROJECTNAME,p.PROJECTNO,u.REALNAME 'PMName'
         FROM t_demand d,t_project p,t_user u
         WHERE d.ISDELETE = 0 AND p.ISDELETE = 0 AND u.ISDELETE = 0
-        AND d.PROJECTID = p.ID AND p.PMID = u.USERNAME
-        <if test="userName!=null and userName!=''">
-            AND d.DEVID = #{userName}
-        </if>
-        ORDER BY d.DELIVERYTIME ASC
+            AND d.PROJECTID = p.ID AND p.PMID = u.USERNAME
+            AND d.DEVID = #{devId}
+            ORDER BY d.DELIVERYTIME ASC
     </select>
 
     <select id="getDemandListByCreactName" parameterType="String" resultType="cn.wy.bs.dto.DemandDto">

@@ -10,7 +10,7 @@ public interface DemandMapper extends BaseMapper<Demand>{
 
     DemandDto getDemand(HashMap<String, Object> map);
 
-	List<DemandDto> getDemandListByDevId(HashMap<String, Object> map);
+	List<DemandDto> getDemandListByDevId(String devId);
 
 	List<DemandDto> getDemandListByCreactName(HashMap<String, Object> map);
 

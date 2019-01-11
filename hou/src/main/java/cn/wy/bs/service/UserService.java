@@ -1,10 +1,9 @@
 package cn.wy.bs.service;
 
-import cn.wy.bs.dto.UserDto;
 import cn.wy.bs.entity.Auth;
 import cn.wy.bs.entity.Role;
 import cn.wy.bs.entity.User;
-import cn.wy.bs.utils.ResponseData;
+import cn.wy.bs.entity.UserProfile;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
@@ -35,7 +34,7 @@ public interface UserService {
     /**
      * 获取所有人员
      */
-    List<User> getUsers();
+    List<UserProfile> getUsers();
 
     /**
      * 根据用户名获取按钮权限

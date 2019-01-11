@@ -1,6 +1,7 @@
 package cn.wy.bs.mapper;
 
 
+import cn.wy.bs.entity.User;
 import cn.wy.bs.entity.UserProfile;
 import cn.wy.bs.utils.BaseMapper;
 
@@ -48,4 +49,14 @@ public interface UserProfileMapper extends BaseMapper<UserProfile>{
      * 根据手机号查找
      */
     List<UserProfile> selectByTel(String tel);
+
+    /**
+     * 获取所有资源的人员
+     */
+    List<UserProfile> getUsers();
+
+    /**
+     * 根据用户ID查找
+     */
+    UserProfile selectByUserId(String id);
 }

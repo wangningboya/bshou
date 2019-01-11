@@ -56,4 +56,16 @@
     </select>
 
 
+    <select id="getUsers" resultType="cn.wy.bs.entity.UserProfile">
+        SELECT up.*
+        FROM t_userprofile up
+        WHERE up.ISDELETE = 0
+    </select>
+
+    <select id="selectByUserId" parameterType="String" resultType="cn.wy.bs.entity.UserProfile">
+        SELECT up.*
+        FROM t_userprofile up
+        WHERE up.ISDELETE = 0
+          AND up.USERID = #{id}
+    </select>
 </mapper>

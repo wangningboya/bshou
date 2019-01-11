@@ -2,6 +2,7 @@ package cn.wy.bs.controller;
 
 import cn.wy.bs.entity.Auth;
 import cn.wy.bs.entity.User;
+import cn.wy.bs.entity.UserProfile;
 import cn.wy.bs.service.UserService;
 import cn.wy.bs.utils.ResponseData;
 import com.alibaba.fastjson.JSONObject;
@@ -67,7 +68,7 @@ public class UserController {
     public ResponseData getUsers(
     ) {
         ResponseData responseData = new ResponseData();
-        List<User> userList = userService.getUsers();
+        List<UserProfile> userList = userService.getUsers();
         responseData.setData(userList);
         return responseData;
     }
