@@ -4,6 +4,7 @@ import cn.wy.bs.entity.Auth;
 import cn.wy.bs.entity.Role;
 import cn.wy.bs.entity.User;
 import cn.wy.bs.entity.UserProfile;
+import cn.wy.bs.utils.ResponseData;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
@@ -52,6 +53,11 @@ public interface UserService {
     int getUserByUserName(HashMap<String, Object> map);
 
     /**
+     * 根据手机获取用户数量
+     */
+    int getUserByPhone(HashMap<String, Object> map);
+
+    /**
      * 注册
      */
     void register(HashMap<String, Object> map);
@@ -59,5 +65,6 @@ public interface UserService {
     /**
      * 修改个人信息
      */
-    void editUser(HttpSession session, HashMap<String, Object> map);
+    ResponseData editUser(HttpSession session, HashMap<String, Object> map);
+
 }

@@ -91,6 +91,20 @@ public class UserController {
         return responseData;
     }
 
+    @RequestMapping(value = "/checkPhone")
+    public ResponseData checkPhone(
+            @RequestParam HashMap<String, Object> map
+    ) {
+        ResponseData responseData = new ResponseData();
+        int a = userService.getUserByPhone(map);
+        if (a == 0) {
+            responseData.setRspCode("1");
+        } else {
+            responseData.setRspCode("0");
+        }
+        return responseData;
+    }
+
 
     @RequestMapping(value = "/editUser")
     public ResponseData editUser(
@@ -99,9 +113,7 @@ public class UserController {
     ) {
         ResponseData responseData = new ResponseData();
         try{
-            userService.editUser(session, map);
-            responseData.setRspCode("000000");
-            responseData.setRspMsg("修改成功");
+            responseData = userService.editUser(session, map);
             return responseData;
         }catch (Exception e){
             responseData.setRspCode("999999");

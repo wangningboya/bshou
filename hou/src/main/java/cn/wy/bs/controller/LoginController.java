@@ -2,6 +2,9 @@ package cn.wy.bs.controller;
 
 import cn.wy.bs.dto.UserDto;
 import cn.wy.bs.entity.User;
+import cn.wy.bs.entity.UserProfile;
+import cn.wy.bs.mapper.UserMapper;
+import cn.wy.bs.mapper.UserProfileMapper;
 import cn.wy.bs.service.UserService;
 import cn.wy.bs.utils.ResponseData;
 
@@ -22,6 +25,12 @@ public class LoginController {
     @Resource
     private UserService userService;
 
+    @Resource
+    private UserMapper userMapper;
+
+    @Resource
+    private UserProfileMapper userProfileMapper;
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ResponseData login(
             HttpServletRequest request,
@@ -37,6 +46,16 @@ public class LoginController {
                 responseData.setRspMsg("账号或者密码错误！");
                 break;
             case 1:
+                String userName = map.get("userName").toString();
+                User u = userMapper.selectByUserName(userName);
+                String id = u.getID();
+                UserProfile userProfile = userProfileMapper.selectByUserId(id);
+                if(userProfile==null){
+                    responseData.setRspCode("666666");
+                    responseData.setRspMsg("此账号无资源，请联系管理员");
+                    return responseData;
+                }
+
                 HttpSession session = request.getSession();
                 session.setAttribute("userName", map.get("userName"));
                 List<String> permissionsList = userService.getPermissionsByUserName(map.get("userName").toString());

@@ -25,6 +25,8 @@ public interface UserMapper extends BaseMapper<User> {
 
     int getUserByUserName(HashMap<String, Object> map);
 
+    int getUserByPhone(HashMap<String, Object> map);
+
     /**
      * 根据手机号查询
      */
@@ -39,4 +41,5 @@ public interface UserMapper extends BaseMapper<User> {
      * 根据账号查找
      */
     User selectByUserName(String userName);
+
 }

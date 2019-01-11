@@ -33,6 +33,8 @@ public class ResourceOrgDto {
 
     private String resType;
 
+    private String resRoleId;
+
     private List<ResourceOrgDto> children;
 
     public String getResourceDepartName() {
@@ -129,6 +131,14 @@ public class ResourceOrgDto {
 
     public void setResType(String resType) {
         this.resType = resType;
+    }
+
+    public String getResRoleId() {
+        return resRoleId;
+    }
+
+    public void setResRoleId(String resRoleId) {
+        this.resRoleId = resRoleId;
     }
 
     public List<ResourceOrgDto> getChildren() {

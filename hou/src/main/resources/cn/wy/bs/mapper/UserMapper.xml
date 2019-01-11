@@ -66,6 +66,13 @@
           AND u.USERNAME = #{userName}
     </select>
 
+    <select id="getUserByPhone" parameterType="String" resultType="int">
+        SELECT count(*)
+        FROM t_user u
+        WHERE u.ISDELETE = 0
+          AND u.PHONE = #{phone}
+    </select>
+
     <select id="selectByTel" parameterType="String" resultType="cn.wy.bs.entity.User">
         SELECT u.*
         FROM t_user u

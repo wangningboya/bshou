@@ -60,12 +60,15 @@ public class IndexController {
 
         //个人信息
         User user = userService.getByUserName(map);
+        ret.put("user", user);
 
         //我的任务
         PageInfo<DemandDto> myTaskDemandList = demandService.getDemandListByDevId(pageNum, pageSize, map);
+        ret.put("myTaskDemandList", myTaskDemandList);
 
         //我创建的任务
         PageInfo<DemandDto> myCreateDemandList = demandService.getDemandListByCreactName(pageNum, pageSize, map);
+        ret.put("myCreateDemandList", myCreateDemandList);
 
         //团队成员
         User user2 = new User();
@@ -74,6 +77,7 @@ public class IndexController {
         UserProfile userProfile = userProfileMapper.selectByUserId(user2.getID());
 
         List<UserProfile> userProfiles = new ArrayList<>();
+
 
         //组长
         if (Constant.RESOURCE_IS_LEADER.equals(userProfile.getIsLeader())) {
@@ -122,6 +126,7 @@ public class IndexController {
         }
         BigDecimal bg1 = new BigDecimal(myWorkingHours / 60);
         myWorkingHours = bg1.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+        ret.put("myWorkingHours", myWorkingHours);
 
         //计算团队本月工时
         Set teamDemandSet = new HashSet();
@@ -146,15 +151,10 @@ public class IndexController {
 
         BigDecimal bg2 = new BigDecimal(teamWorkingHours / 60);
         teamWorkingHours = bg2.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+        ret.put("teamWorkingHours", teamWorkingHours);
 
-
-        ret.put("user", user);
-        ret.put("myTaskDemandList", myTaskDemandList);
-        ret.put("myCreateDemandList", myCreateDemandList);
         ret.put("teams", userProfiles);
         ret.put("projects", projects);
-        ret.put("myWorkingHours", myWorkingHours);
-        ret.put("teamWorkingHours", teamWorkingHours);
         responseData.setData(ret);
         responseData.setRspCode("000000");
         return responseData;

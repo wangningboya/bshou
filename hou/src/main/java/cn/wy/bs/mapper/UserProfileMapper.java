@@ -4,6 +4,7 @@ package cn.wy.bs.mapper;
 import cn.wy.bs.entity.User;
 import cn.wy.bs.entity.UserProfile;
 import cn.wy.bs.utils.BaseMapper;
+import io.lettuce.core.dynamic.annotation.Param;
 
 import java.util.HashMap;
 import java.util.List;
@@ -59,4 +60,9 @@ public interface UserProfileMapper extends BaseMapper<UserProfile>{
      * 根据用户ID查找
      */
     UserProfile selectByUserId(String id);
+
+    /**
+     * 查询除ID外的手机ID
+     */
+    List<UserProfile> selectByTel2(@Param("id")String id, @Param("tel")String tel);
 }

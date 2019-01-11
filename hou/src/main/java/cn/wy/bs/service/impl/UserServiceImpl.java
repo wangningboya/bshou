@@ -6,8 +6,10 @@ import cn.wy.bs.entity.User;
 import cn.wy.bs.entity.UserProfile;
 import cn.wy.bs.mapper.UserMapper;
 import cn.wy.bs.mapper.UserProfileMapper;
+import cn.wy.bs.service.UserProfileService;
 import cn.wy.bs.service.UserService;
 import cn.wy.bs.utils.BaseUtil;
+import cn.wy.bs.utils.ResponseData;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -69,6 +71,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public int getUserByPhone(HashMap<String, Object> map) {
+        return userMapper.getUserByPhone(map);
+    }
+
+    @Override
     public void register(HashMap<String, Object> map) {
         User user = new User();
         user.setID(BaseUtil.getUUID());
@@ -92,7 +99,30 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void editUser(HttpSession session, HashMap<String, Object> map) {
+    public ResponseData editUser(HttpSession session, HashMap<String, Object> map) {
+        ResponseData responseData = new ResponseData();
+        String tel = map.get("phone").toString();
+        String id = map.get("id").toString();
+        UserProfile userProfile = userProfileMapper.selectByUserId(id);
+        String id2 = userProfile.getID();
+
+        List<User> userList = userMapper.selectByTel2(id, tel);
+        if (userList.size() > 0) {
+            responseData.setRspCode("888888");
+            responseData.setRspMsg("已存在此手机号的账号");
+            return responseData;
+        }
+
+        List<UserProfile> userProfileList = userProfileMapper.selectByTel2(id2, tel);
+        if (userProfileList.size() > 0) {
+            responseData.setRspCode("888888");
+            responseData.setRspMsg("已存在此手机号的资源");
+            return responseData;
+        }
+
+
+
+
         User user = new User();
         user.setModifiName(session.getAttribute("userName").toString());
         user.setModifiTime(new Date());
@@ -103,8 +133,14 @@ public class UserServiceImpl implements UserService {
         }
         user.setID(map.get("id").toString());
         user.setRealName(map.get("realName").toString());
+        userProfile.setResName(map.get("realName").toString());
         user.setPhone(map.get("phone").toString());
+        userProfile.setTelephone(map.get("phone").toString());
         user.setEmail(map.get("email").toString());
         userMapper.updateByPrimaryKeySelective(user);
+        userProfileMapper.updateByPrimaryKeySelective(userProfile);
+        responseData.setRspCode("000000");
+        responseData.setRspMsg("修改成功");
+        return responseData;
     }
 }

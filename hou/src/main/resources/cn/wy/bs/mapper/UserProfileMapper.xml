@@ -68,4 +68,12 @@
         WHERE up.ISDELETE = 0
           AND up.USERID = #{id}
     </select>
+
+    <select id="selectByTel2" resultType="cn.wy.bs.entity.UserProfile">
+        SELECT up.*
+        FROM t_userprofile up
+        WHERE up.ISDELETE = 0
+          AND up.TELEPHONE = #{tel}
+          AND up.ID NOT IN (#{id})
+    </select>
 </mapper>

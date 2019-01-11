@@ -1,19 +1,19 @@
 package cn.wy.bs.controller;
 
 import cn.wy.bs.constant.Constant;
-import cn.wy.bs.dto.IdDto;
 import cn.wy.bs.dto.ResourceOrgDto;
 import cn.wy.bs.entity.Category;
+import cn.wy.bs.entity.Role;
 import cn.wy.bs.entity.UserProfile;
 import cn.wy.bs.mapper.CategoryMapper;
+import cn.wy.bs.mapper.RoleMapper;
+import cn.wy.bs.mapper.UserMapper;
 import cn.wy.bs.mapper.UserProfileMapper;
 import cn.wy.bs.service.ArchService;
 import cn.wy.bs.service.UserProfileService;
-import cn.wy.bs.utils.BaseModal;
-import cn.wy.bs.utils.BaseUtil;
+import cn.wy.bs.service.UserService;
 import cn.wy.bs.utils.ResponseData;
 import org.springframework.web.bind.annotation.*;
-import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -40,6 +40,13 @@ public class OrganizationController {
 
     @Resource
     private ArchService archService;
+
+    @Resource
+    private RoleMapper roleMapper;
+
+    @Resource
+    private UserMapper userMapper;
+
 
     /**
      * 初始化数据
@@ -90,9 +97,14 @@ public class OrganizationController {
 
         }
 
+        //获取角色列表
+        List<Role> roleList = roleMapper.getAll();
+
+
         HashMap<String, Object> ret = new HashMap<>();
         ret.put("archData", archService.queryCascader());
         ret.put("orgData", orgStructure);
+        ret.put("roleList", roleList);
 
         responseData.setData(ret);
         responseData.setRspCode("000000");
@@ -119,12 +131,12 @@ public class OrganizationController {
             rOrg.setKey(u.getID());
             rOrg.setResourceDepartName(u.getResDepartName());
             rOrg.setResType(u.getResType());
+            rOrg.setResRoleId(userMapper.selectByPrimaryKey(u.getUserId()).getRoleId());
             children.add(rOrg);
         }
 
         return children;
     }
-
 
     @RequestMapping(value = "/createOrg", method = RequestMethod.POST)
     public ResponseData createOrg(

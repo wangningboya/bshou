@@ -71,7 +71,8 @@ public class UserProfileServiceImpl implements UserProfileService {
         user.setModifiTime(new Date());
         user.setModifiName(session.getAttribute("userName").toString());
         user.setRealName(resourceOrgDto.getResourceName());
-        user.setEmail(resourceOrgDto.getResourceEmail());
+//        user.setEmail(resourceOrgDto.getResourceEmail());
+        user.setRoleId(resourceOrgDto.getResRoleId());
         userMapper.updateByPrimaryKeySelective(user);
 
         UserProfile userProfile = new UserProfile();
@@ -87,10 +88,12 @@ public class UserProfileServiceImpl implements UserProfileService {
         userProfile.setResName(userList.get(0).getRealName());
         userProfile.setResType(resourceOrgDto.getResType());
         userProfile.setEmail(resourceOrgDto.getResourceEmail());
+        userProfile.setEmail(resourceOrgDto.getResourceEmail());
         userProfile.setUserId(userList.get(0).getID());
-        userProfile.setResDepart(resourceOrgDto.getResourceDepart());
-
-        userProfile.setResDepartName(archService.queryDepName(userProfile.getResDepart()));
+        if (resourceOrgDto.getResourceDepart() != null && resourceOrgDto.getResourceDepart() != "") {
+            userProfile.setResDepart(resourceOrgDto.getResourceDepart());
+            userProfile.setResDepartName(archService.queryDepName(userProfile.getResDepart()));
+        }
 
         userProfile.setIsLeader(Constant.RESOURCE_NOT_LEADER);
         userProfile.setResTeamId(Constant.RESOURCE_UNDESIGNED);
@@ -135,8 +138,9 @@ public class UserProfileServiceImpl implements UserProfileService {
         user.setModifiName(session.getAttribute("userName").toString());
         user.setModifiTime(new Date());
         user.setRealName(resourceOrgDto.getResourceName());
-        user.setEmail(resourceOrgDto.getResourceEmail());
+//        user.setEmail(resourceOrgDto.getResourceEmail());
         user.setPhone(resourceOrgDto.getResourceTel());
+        user.setRoleId(resourceOrgDto.getResRoleId());
         userMapper.updateByPrimaryKeySelective(user);
 
         userProfile.setModifiTime(new Date());
@@ -149,8 +153,10 @@ public class UserProfileServiceImpl implements UserProfileService {
         userProfile.setResName(resourceOrgDto.getResourceName());
         userProfile.setResType(resourceOrgDto.getResType());
         userProfile.setEmail(resourceOrgDto.getResourceEmail());
-        userProfile.setResDepart(resourceOrgDto.getResourceDepart());
-        userProfile.setResDepartName(archService.queryDepName(userProfile.getResDepart()));
+        if (resourceOrgDto.getResourceDepart() != null && resourceOrgDto.getResourceDepart() != "") {
+            userProfile.setResDepart(resourceOrgDto.getResourceDepart());
+            userProfile.setResDepartName(archService.queryDepName(userProfile.getResDepart()));
+        }
 
         userProfileMapper.updateByPrimaryKeySelective(userProfile);
 
