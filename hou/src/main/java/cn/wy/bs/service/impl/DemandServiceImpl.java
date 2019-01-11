@@ -69,6 +69,13 @@ public class DemandServiceImpl implements DemandService {
 
     @Override
     public PageInfo<DemandDto> getDemandList(Integer pageNum, Integer pageSize, HashMap<String, Object> map) {
+
+        if (map.get("userName") != null) {
+            User user = userMapper.selectByUserName(map.get("userName").toString());
+            String id = user.getID();
+            map.put("id", id);
+        }
+
         PageHelper.startPage(pageNum, pageSize);
         PageInfo<DemandDto> demandDtoPageInfo = new PageInfo<DemandDto>(demandMapper.getDemandList(map));
         return demandDtoPageInfo;
@@ -270,6 +277,44 @@ public class DemandServiceImpl implements DemandService {
 
         demandMapper.updateByPrimaryKeySelective(demand);
         addDemandLogg(session, demand, DemandStateEnum.T07);
+    }
+
+    /**
+     * 验收通过
+     *
+     * @param session
+     * @param map
+     */
+    @Override
+    public void passDev(HttpSession session, HashMap<String, Object> map) {
+        Demand demand = new Demand();
+
+        demand.setID(map.get("id").toString());
+        demand.setState(DemandStateEnum.T09.getIndex());
+        demand.setModifiTime(new Date());
+        demand.setModifiName(session.getAttribute("userName").toString());
+
+        demandMapper.updateByPrimaryKeySelective(demand);
+        addDemandLogg(session, demand, DemandStateEnum.T09);
+    }
+
+    /**
+     * 验收未通过
+     *
+     * @param session
+     * @param map
+     */
+    @Override
+    public void failDev(HttpSession session, HashMap<String, Object> map) {
+        Demand demand = new Demand();
+
+        demand.setID(map.get("id").toString());
+        demand.setState(DemandStateEnum.T10.getIndex());
+        demand.setModifiTime(new Date());
+        demand.setModifiName(session.getAttribute("userName").toString());
+
+        demandMapper.updateByPrimaryKeySelective(demand);
+        addDemandLogg(session, demand, DemandStateEnum.T10);
     }
 
     /**

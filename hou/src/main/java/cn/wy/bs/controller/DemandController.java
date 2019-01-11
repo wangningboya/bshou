@@ -38,7 +38,6 @@ public class DemandController {
             @RequestParam HashMap<String, Object> map
     ) {
         ResponseData responseData = new ResponseData();
-        String a;
         try {
             PageInfo<DemandDto> demandList = demandService.getDemandList(pageNum, pageSize, map);
             responseData.setData(demandList);
@@ -46,7 +45,6 @@ public class DemandController {
         } catch (Exception e) {
             responseData.setRspCode("999999");
             responseData.setRspMsg("查询失败");
-            System.out.println(e);
             return responseData;
         }
         return responseData;
@@ -275,6 +273,42 @@ public class DemandController {
             responseData.setRspCode("999999");
         }
         return responseData;
+    }
+
+    @RequestMapping(value = "/passDev", method = RequestMethod.GET)
+    public ResponseData passDev(
+            HttpSession session,
+            @RequestParam HashMap<String, Object> map
+    ) {
+        ResponseData responseData = new ResponseData();
+        try {
+            demandService.passDev(session, map);
+            responseData.setRspMsg("操作成功");
+            responseData.setRspCode("000000");
+            return responseData;
+        } catch (Exception e) {
+            responseData.setRspMsg(e.toString());
+            responseData.setRspCode("999999");
+            return responseData;
+        }
+    }
+
+    @RequestMapping(value = "/failDev", method = RequestMethod.GET)
+    public ResponseData failDev(
+            HttpSession session,
+            @RequestParam HashMap<String, Object> map
+    ) {
+        ResponseData responseData = new ResponseData();
+        try {
+            demandService.failDev(session, map);
+            responseData.setRspMsg("操作成功");
+            responseData.setRspCode("000000");
+            return responseData;
+        } catch (Exception e) {
+            responseData.setRspMsg(e.toString());
+            responseData.setRspCode("999999");
+            return responseData;
+        }
     }
 
     @RequestMapping(value = "/getDemandLogById", method = RequestMethod.GET)

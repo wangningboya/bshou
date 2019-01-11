@@ -77,6 +77,16 @@ public interface DemandService {
     void endDev(HttpSession session, HashMap<String, Object> map);
 
     /**
+     * 验收通过
+     */
+    void passDev(HttpSession session, HashMap<String, Object> map);
+
+    /**
+     * 验收未通过
+     */
+    void failDev(HttpSession session, HashMap<String, Object> map);
+
+    /**
      * 问题转需求
      */
     void issueToDemand(HttpSession session, HashMap<String, Object> map);
@@ -92,6 +102,5 @@ public interface DemandService {
     Double getTimeByIdDuringTheMonth(String id);
 
     void updateDemandState(int originalState, int currentState);
-
 
 }

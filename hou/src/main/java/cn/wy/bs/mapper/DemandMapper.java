@@ -23,4 +23,6 @@ public interface DemandMapper extends BaseMapper<Demand> {
     List<Demand> getDemandListByIssueId(String issueId);
 
     List<Demand> getDemandListByState(int originalState);
+
+
 }

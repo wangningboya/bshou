@@ -3,6 +3,7 @@ package cn.wy.bs.controller;
 import cn.wy.bs.entity.Auth;
 import cn.wy.bs.entity.User;
 import cn.wy.bs.entity.UserProfile;
+import cn.wy.bs.mapper.UserMapper;
 import cn.wy.bs.service.UserService;
 import cn.wy.bs.utils.ResponseData;
 import com.alibaba.fastjson.JSONObject;
@@ -22,6 +23,9 @@ public class UserController {
 
     @Resource
     private UserService userService;
+
+    @Resource
+    private UserMapper userMapper;
 
     @RequestMapping(value = "/userQuery")
     public ResponseData findByUserName(
@@ -102,6 +106,22 @@ public class UserController {
         }catch (Exception e){
             responseData.setRspCode("999999");
             responseData.setRspMsg("修改失败");
+            return responseData;
+        }
+    }
+
+    @RequestMapping(value = "/currentUser")
+    public ResponseData currentUser(
+            HttpSession session
+    ) {
+        ResponseData responseData = new ResponseData();
+        try{
+            User user = userMapper.selectByUserName(session.getAttribute("userName").toString());
+            responseData.setData(user);
+            responseData.setRspCode("000000");
+            return responseData;
+        }catch (Exception e){
+            responseData.setRspCode("999999");
             return responseData;
         }
     }
