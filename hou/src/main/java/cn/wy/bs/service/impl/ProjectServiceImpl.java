@@ -49,10 +49,11 @@ public class ProjectServiceImpl implements ProjectService {
         project.setProjectDes(map.get("projectDes").toString());
         project.setPMId(map.get("PMId").toString());
 
-        if (map.get("projectId") != null) {
-            project.setID(map.get("projectId").toString());
+        if (map.get("id") != null) {
+            project.setID(map.get("id").toString());
             project.setModifiName(session.getAttribute("userName").toString());
             project.setModifiTime(new Date());
+            projectMapper.updateByPrimaryKeySelective(project);
         } else {
             project.setID(BaseUtil.getUUID());
             project.setCreateName(session.getAttribute("userName").toString());
