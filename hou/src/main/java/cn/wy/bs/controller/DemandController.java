@@ -2,6 +2,7 @@ package cn.wy.bs.controller;
 
 import cn.wy.bs.dto.DemandDto;
 import cn.wy.bs.dto.DemandLogDto;
+import cn.wy.bs.mapper.DemandLogMapper;
 import cn.wy.bs.service.DemandService;
 import cn.wy.bs.utils.ResponseData;
 import com.alibaba.fastjson.JSONObject;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,6 +24,9 @@ public class DemandController {
 
     @Resource
     private DemandService demandService;
+
+    @Resource
+    private DemandLogMapper demandLogMapper;
 
     /**
      * 获取需求
@@ -68,6 +73,25 @@ public class DemandController {
             return responseData;
         }
         return responseData;
+    }
+
+    @RequestMapping(value = "/getDemandTimeById", method = RequestMethod.GET)
+    public ResponseData getDemandTimeById(
+            @RequestParam HashMap<String, Object> map
+    ) {
+        ResponseData responseData = new ResponseData();
+        try {
+            Double demandTime = demandService.getTimeById(map.get("id").toString());
+            BigDecimal bg = new BigDecimal(demandTime / 60);
+            demandTime = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+            responseData.setData(demandTime);
+            responseData.setRspCode("000000");
+            return responseData;
+        } catch (Exception e) {
+            responseData.setRspCode("999999");
+            responseData.setRspMsg("查询失败");
+            return responseData;
+        }
     }
 
     @RequestMapping(value = "/getDemandListByDevId", method = RequestMethod.GET)

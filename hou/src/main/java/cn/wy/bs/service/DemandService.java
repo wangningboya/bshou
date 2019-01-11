@@ -80,4 +80,18 @@ public interface DemandService {
      * 问题转需求
      */
     void issueToDemand(HttpSession session, HashMap<String, Object> map);
+
+    /**
+     * 根据ID计算需求工时
+     */
+    Double getTimeById(String id);
+
+    /**
+     * 根据ID计算需求本月工时
+     */
+    Double getTimeByIdDuringTheMonth(String id);
+
+    void updateDemandState(int originalState, int currentState);
+
+
 }

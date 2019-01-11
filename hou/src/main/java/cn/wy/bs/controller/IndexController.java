@@ -2,21 +2,21 @@ package cn.wy.bs.controller;
 
 import cn.wy.bs.constant.Constant;
 import cn.wy.bs.dto.DemandDto;
-import cn.wy.bs.entity.Demand;
 import cn.wy.bs.entity.Project;
 import cn.wy.bs.entity.User;
 import cn.wy.bs.entity.UserProfile;
+import cn.wy.bs.mapper.DemandMapper;
 import cn.wy.bs.mapper.ProjectMapper;
 import cn.wy.bs.mapper.UserMapper;
 import cn.wy.bs.mapper.UserProfileMapper;
 import cn.wy.bs.service.DemandService;
-import cn.wy.bs.service.ProjectService;
 import cn.wy.bs.service.UserService;
 import cn.wy.bs.utils.ResponseData;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.*;
 
 /**
@@ -37,6 +37,9 @@ public class IndexController {
     private DemandService demandService;
 
     @Resource
+    private DemandMapper demandMapper;
+
+    @Resource
     private UserProfileMapper userProfileMapper;
 
     @Resource
@@ -52,7 +55,7 @@ public class IndexController {
             @RequestParam HashMap<String, Object> map
     ) {
         ResponseData responseData = new ResponseData();
-        HashMap<String,Object> ret = new HashMap<>();
+        HashMap<String, Object> ret = new HashMap<>();
 
 
         //个人信息
@@ -73,17 +76,17 @@ public class IndexController {
         List<UserProfile> userProfiles = new ArrayList<>();
 
         //组长
-        if(Constant.RESOURCE_IS_LEADER.equals(userProfile.getIsLeader())){
-            ret.put("teamLeader",userProfile);
+        if (Constant.RESOURCE_IS_LEADER.equals(userProfile.getIsLeader())) {
+            ret.put("teamLeader", userProfile);
 
             //团队成员
             userProfiles = userProfileMapper.selectByTeamId(userProfile.getID());
 
-        }else{
+        } else {
             UserProfile teamLeader = userProfileMapper.selectByPrimaryKey(userProfile.getResTeamId());
-            ret.put("teamLeader",teamLeader);
+            ret.put("teamLeader", teamLeader);
 
-            if(teamLeader != null){
+            if (teamLeader != null) {
 
                 //团队成员
                 userProfiles = userProfileMapper.selectByTeamId(userProfile.getResTeamId());
@@ -105,11 +108,53 @@ public class IndexController {
             projects.add(projectMapper.selectByPrimaryKey(str.toString()));
         }
 
+        //计算我本月的工时
+        Set myDemandSet = new HashSet();
+        Double myWorkingHours = 0d;
+        List<DemandDto> myDemandList = demandMapper.getDemandListByDevId(user.getID());
+        for (DemandDto d : myDemandList) {
+            myDemandSet.add(d);
+        }
+        for (Object d : myDemandSet) {
+            DemandDto demandDto = (DemandDto) d;
+            String id = demandDto.getID();
+            myWorkingHours += demandService.getTimeByIdDuringTheMonth(id);
+        }
+        BigDecimal bg1 = new BigDecimal(myWorkingHours / 60);
+        myWorkingHours = bg1.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+
+        //计算团队本月工时
+        Set teamDemandSet = new HashSet();
+        Double teamWorkingHours = 0d;
+
+        UserProfile leaderUserProfile = (UserProfile) ret.get("teamLeader");
+        List<DemandDto> leaderDemandList = demandMapper.getDemandListByDevId(leaderUserProfile.getUserId());
+        for (DemandDto d : leaderDemandList) {
+            teamDemandSet.add(d);
+        }
+        for (int i = 0; i < userProfiles.size(); i++) {
+            List<DemandDto> memberDemandList = demandMapper.getDemandListByDevId(userProfiles.get(i).getUserId());
+            for (DemandDto d : memberDemandList) {
+                teamDemandSet.add(d);
+            }
+        }
+        for (Object d : teamDemandSet) {
+            DemandDto demandDto = (DemandDto) d;
+            String id = demandDto.getID();
+            teamWorkingHours += demandService.getTimeByIdDuringTheMonth(id);
+        }
+
+        BigDecimal bg2 = new BigDecimal(teamWorkingHours / 60);
+        teamWorkingHours = bg2.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+
+
         ret.put("user", user);
         ret.put("myTaskDemandList", myTaskDemandList);
         ret.put("myCreateDemandList", myCreateDemandList);
-        ret.put("teams",userProfiles);
-        ret.put("projects",projects);
+        ret.put("teams", userProfiles);
+        ret.put("projects", projects);
+        ret.put("myWorkingHours", myWorkingHours);
+        ret.put("teamWorkingHours", teamWorkingHours);
         responseData.setData(ret);
         responseData.setRspCode("000000");
         return responseData;

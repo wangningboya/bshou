@@ -13,4 +13,8 @@ public interface DemandLogMapper extends BaseMapper<DemandLog> {
 
 
 	List<DemandLogDto> getByDemandId(HashMap<String, Object> map);
+
+	List<DemandLog> selectByDemandId(String id);
+
+	List<DemandLog> selectByDemandIdDuringTheMonth(String id);
 }

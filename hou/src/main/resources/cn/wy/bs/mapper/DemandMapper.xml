@@ -80,5 +80,11 @@
         ORDER BY d.CREATENAME DESC
     </select>
 
+    <select id="getDemandListByState" parameterType="String" resultType="cn.wy.bs.entity.Demand">
+        SELECT d.*
+        FROM t_demand d
+        WHERE d.ISDELETE = 0
+          AND d.STATE = #{originalState}
+    </select>
 
 </mapper>

@@ -1,5 +1,6 @@
 package cn.wy.bs.service.impl;
 
+import cn.wy.bs.constant.Constant;
 import cn.wy.bs.constant.enums.DemandStateEnum;
 import cn.wy.bs.dto.DemandDto;
 import cn.wy.bs.dto.DemandLogDto;
@@ -302,6 +303,64 @@ public class DemandServiceImpl implements DemandService {
         issue.setModifiName(session.getAttribute("userName").toString());
         issue.setModifiTime(new Date());
         issueMapper.updateByPrimaryKeySelective(issue);
+    }
+
+
+    @Override
+    public Double getTimeById(String id) {
+        Double time = 0d;
+        List<DemandLog> demandLogList = demandLogMapper.selectByDemandId(id);
+        if (demandLogList.size() <= 1) {
+            return 0d;
+        } else {
+
+            for (int i = 0; i < (demandLogList.size() / 2); i++) {
+                Long date = (demandLogList.get(i * 2 + 1).getOpeTime().getTime() - demandLogList.get(i * 2).getOpeTime().getTime()) / (1000 * 60);
+                time += date;
+            }
+
+            return time;
+        }
+    }
+
+    @Override
+    public Double getTimeByIdDuringTheMonth(String id) {
+        Double time = 0d;
+        List<DemandLog> demandLogList = demandLogMapper.selectByDemandIdDuringTheMonth(id);
+        if (demandLogList.size() <= 1) {
+            return 0d;
+        } else {
+
+            for (int i = 0; i < (demandLogList.size() / 2); i++) {
+                Long date = (demandLogList.get(i * 2 + 1).getOpeTime().getTime() - demandLogList.get(i * 2).getOpeTime().getTime()) / (1000 * 60);
+                time += date;
+            }
+
+            return time;
+        }
+    }
+
+    @Override
+    public void updateDemandState(int originalState, int currentState) {
+        List<Demand> demandList = demandMapper.getDemandListByState(originalState);
+        for (Demand d : demandList) {
+
+            d.setState(currentState);
+            demandMapper.updateByPrimaryKeySelective(d);
+
+            DemandLog demandLog = new DemandLog();
+            demandLog.setID(BaseUtil.getUUID());
+            demandLog.setIsDelete(Constant.ISDELETED_FALSE_0);
+            demandLog.setDemandId(d.getID());
+            demandLog.setCreateTime(new Date());
+            demandLog.setDemandState(currentState);
+            demandLog.setDemandStateName("月底暫停需求");
+            User user = userMapper.selectByPrimaryKey(d.getDevId());
+            demandLog.setOpeId(user.getUserName());
+            demandLog.setOpeTime(new Date());
+            demandLogMapper.insert(demandLog);
+
+        }
     }
 
     /**
