@@ -1,5 +1,7 @@
 package cn.wy.bs.utils;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
+
 import javax.persistence.Column;
 import java.io.Serializable;
 import java.util.Date;
@@ -39,6 +41,7 @@ public class BaseModal implements Serializable{
     /**
      * 是否删除（0未删除/1删除）
      */
+    @Excel(name = "是否删除",height = 11, width = 15)
     @Column(name="ISDELETE")
     private Integer isDelete;
 
