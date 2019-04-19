@@ -43,7 +43,6 @@ public class PageController {
 		UsernamePasswordToken token = new UsernamePasswordToken("admin","123456");
 		Subject subject = SecurityUtils.getSubject();
 		subject.login(token);
-		System.out.println("-----1-----");
 		return "home";
 	}
 

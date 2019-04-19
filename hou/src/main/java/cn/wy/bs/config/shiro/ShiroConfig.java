@@ -110,7 +110,6 @@ public class ShiroConfig {
 	@Bean
 	public SessionManager sessionManager() {
 		MySessionManager sessionManager = new MySessionManager();
-
 		//sessionManager.setSessionDAO(redisSessionDAO());
 
 		//全局会话超时时间（单位毫秒），默认30分钟

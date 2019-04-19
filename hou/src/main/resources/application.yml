@@ -18,7 +18,8 @@ mybatis:
     map-underscore-to-camel-case: false
 
 
-#logging:
+logging:
+  config: classpath:log4j2-spring.xml
 #  level:
 #    cn.wy.bs.mapper: debug
 
