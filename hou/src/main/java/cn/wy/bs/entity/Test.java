@@ -5,6 +5,10 @@ public class Test {
 
 	private String test2;
 
+	private Boolean isTest3;
+
+	private Integer isTest4;
+
 	public String getTest1() {
 		return test1;
 	}
@@ -21,11 +25,19 @@ public class Test {
 		this.test2 = test2;
 	}
 
-	@Override
-	public String toString() {
-		return "Test{" +
-				"test1='" + test1 + '\'' +
-				", test2='" + test2 + '\'' +
-				'}';
+	public Boolean getTest3() {
+		return isTest3;
+	}
+
+	public void setTest3(Boolean test3) {
+		isTest3 = test3;
+	}
+
+	public Integer getIsTest4() {
+		return isTest4;
+	}
+
+	public void setIsTest4(Integer isTest4) {
+		this.isTest4 = isTest4;
 	}
 }

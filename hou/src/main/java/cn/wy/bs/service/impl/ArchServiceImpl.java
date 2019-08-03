@@ -1,7 +1,6 @@
 package cn.wy.bs.service.impl;
 
 
-import cn.wy.bs.constant.Constant;
 import cn.wy.bs.dto.CascaderDto;
 import cn.wy.bs.entity.Arch;
 import cn.wy.bs.mapper.ArchMapper;
@@ -9,7 +8,6 @@ import cn.wy.bs.service.ArchService;
 import cn.wy.bs.utils.BaseUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;

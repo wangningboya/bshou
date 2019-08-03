@@ -18,7 +18,8 @@ public class BaseUtil {
      * @return
      */
     public static String getUUID() {
-        return UUID.randomUUID().toString().replace("-", "").toLowerCase();
+        return UUID.randomUUID().toString().toLowerCase();
+        //return UUID.randomUUID().toString().replace("-", "").toLowerCase();
     }
 
     /**
